@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+
+spring:
+  datasource:
+    name: kbms
+    url: jdbc:mysql://111.230.10.191:3306/kbms?useSSL=false
+    username: common_user
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML

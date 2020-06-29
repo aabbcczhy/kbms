@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fjnu.kbms.dao.TypeMapper">
+  <resultMap id="BaseResultMap" type="com.fjnu.kbms.bean.Type">
+    <id column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="type_title" jdbcType="VARCHAR" property="typeTitle" />
+    <result column="type_weight" jdbcType="INTEGER" property="typeWeight" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    type_id, type_title, type_weight, status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from type
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from type
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fjnu.kbms.bean.Type">
+    insert into type (type_id, type_title, type_weight, 
+      status)
+    values (#{typeId,jdbcType=INTEGER}, #{typeTitle,jdbcType=VARCHAR}, #{typeWeight,jdbcType=INTEGER}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fjnu.kbms.bean.Type">
+    insert into type
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="typeTitle != null">
+        type_title,
+      </if>
+      <if test="typeWeight != null">
+        type_weight,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="typeTitle != null">
+        #{typeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="typeWeight != null">
+        #{typeWeight,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fjnu.kbms.bean.Type">
+    update type
+    <set>
+      <if test="typeTitle != null">
+        type_title = #{typeTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="typeWeight != null">
+        type_weight = #{typeWeight,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fjnu.kbms.bean.Type">
+    update type
+    set type_title = #{typeTitle,jdbcType=VARCHAR},
+      type_weight = #{typeWeight,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT}
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </update>
+</mapper>

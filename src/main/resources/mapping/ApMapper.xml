@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fjnu.kbms.dao.ApMapper">
+  <resultMap id="BaseResultMap" type="com.fjnu.kbms.bean.Ap">
+    <id column="apid" jdbcType="INTEGER" property="apid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="is_article" jdbcType="TINYINT" property="isArticle" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="column_id" jdbcType="INTEGER" property="columnId" />
+    <result column="scan" jdbcType="INTEGER" property="scan" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="author_id" jdbcType="INTEGER" property="authorId" />
+    <result column="publish_time" jdbcType="VARCHAR" property="publishTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.fjnu.kbms.bean.Ap">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    apid, title, is_article, picture, type_id, column_id, scan, status, author_id, publish_time
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ap
+    where apid = #{apid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ap
+    where apid = #{apid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fjnu.kbms.bean.Ap">
+    insert into ap (apid, title, is_article, 
+      picture, type_id, column_id, 
+      scan, status, author_id, 
+      publish_time, content)
+    values (#{apid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{isArticle,jdbcType=TINYINT}, 
+      #{picture,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, #{columnId,jdbcType=INTEGER}, 
+      #{scan,jdbcType=INTEGER}, #{status,jdbcType=TINYINT}, #{authorId,jdbcType=INTEGER}, 
+      #{publishTime,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fjnu.kbms.bean.Ap">
+    insert into ap
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="apid != null">
+        apid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="isArticle != null">
+        is_article,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+      <if test="typeId != null">
+        type_id,
+      </if>
+      <if test="columnId != null">
+        column_id,
+      </if>
+      <if test="scan != null">
+        scan,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="authorId != null">
+        author_id,
+      </if>
+      <if test="publishTime != null">
+        publish_time,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="apid != null">
+        #{apid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="isArticle != null">
+        #{isArticle,jdbcType=TINYINT},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="columnId != null">
+        #{columnId,jdbcType=INTEGER},
+      </if>
+      <if test="scan != null">
+        #{scan,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="authorId != null">
+        #{authorId,jdbcType=INTEGER},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fjnu.kbms.bean.Ap">
+    update ap
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="isArticle != null">
+        is_article = #{isArticle,jdbcType=TINYINT},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null">
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="columnId != null">
+        column_id = #{columnId,jdbcType=INTEGER},
+      </if>
+      <if test="scan != null">
+        scan = #{scan,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="authorId != null">
+        author_id = #{authorId,jdbcType=INTEGER},
+      </if>
+      <if test="publishTime != null">
+        publish_time = #{publishTime,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where apid = #{apid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.fjnu.kbms.bean.Ap">
+    update ap
+    set title = #{title,jdbcType=VARCHAR},
+      is_article = #{isArticle,jdbcType=TINYINT},
+      picture = #{picture,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      column_id = #{columnId,jdbcType=INTEGER},
+      scan = #{scan,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      author_id = #{authorId,jdbcType=INTEGER},
+      publish_time = #{publishTime,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where apid = #{apid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fjnu.kbms.bean.Ap">
+    update ap
+    set title = #{title,jdbcType=VARCHAR},
+      is_article = #{isArticle,jdbcType=TINYINT},
+      picture = #{picture,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      column_id = #{columnId,jdbcType=INTEGER},
+      scan = #{scan,jdbcType=INTEGER},
+      status = #{status,jdbcType=TINYINT},
+      author_id = #{authorId,jdbcType=INTEGER},
+      publish_time = #{publishTime,jdbcType=VARCHAR}
+    where apid = #{apid,jdbcType=INTEGER}
+  </update>
+</mapper>

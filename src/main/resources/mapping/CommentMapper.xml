@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fjnu.kbms.dao.CommentMapper">
+  <resultMap id="BaseResultMap" type="com.fjnu.kbms.bean.Comment">
+    <id column="comment_id" jdbcType="INTEGER" property="commentId" />
+    <result column="comment_content" jdbcType="VARCHAR" property="commentContent" />
+    <result column="comment_time" jdbcType="VARCHAR" property="commentTime" />
+    <result column="comment_ap" jdbcType="INTEGER" property="commentAp" />
+    <result column="comment_user" jdbcType="INTEGER" property="commentUser" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    comment_id, comment_content, comment_time, comment_ap, comment_user
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from comment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from comment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fjnu.kbms.bean.Comment">
+    insert into comment (comment_id, comment_content, comment_time, 
+      comment_ap, comment_user)
+    values (#{commentId,jdbcType=INTEGER}, #{commentContent,jdbcType=VARCHAR}, #{commentTime,jdbcType=VARCHAR}, 
+      #{commentAp,jdbcType=INTEGER}, #{commentUser,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fjnu.kbms.bean.Comment">
+    insert into comment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="commentId != null">
+        comment_id,
+      </if>
+      <if test="commentContent != null">
+        comment_content,
+      </if>
+      <if test="commentTime != null">
+        comment_time,
+      </if>
+      <if test="commentAp != null">
+        comment_ap,
+      </if>
+      <if test="commentUser != null">
+        comment_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="commentId != null">
+        #{commentId,jdbcType=INTEGER},
+      </if>
+      <if test="commentContent != null">
+        #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentTime != null">
+        #{commentTime,jdbcType=VARCHAR},
+      </if>
+      <if test="commentAp != null">
+        #{commentAp,jdbcType=INTEGER},
+      </if>
+      <if test="commentUser != null">
+        #{commentUser,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fjnu.kbms.bean.Comment">
+    update comment
+    <set>
+      <if test="commentContent != null">
+        comment_content = #{commentContent,jdbcType=VARCHAR},
+      </if>
+      <if test="commentTime != null">
+        comment_time = #{commentTime,jdbcType=VARCHAR},
+      </if>
+      <if test="commentAp != null">
+        comment_ap = #{commentAp,jdbcType=INTEGER},
+      </if>
+      <if test="commentUser != null">
+        comment_user = #{commentUser,jdbcType=INTEGER},
+      </if>
+    </set>
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fjnu.kbms.bean.Comment">
+    update comment
+    set comment_content = #{commentContent,jdbcType=VARCHAR},
+      comment_time = #{commentTime,jdbcType=VARCHAR},
+      comment_ap = #{commentAp,jdbcType=INTEGER},
+      comment_user = #{commentUser,jdbcType=INTEGER}
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+</mapper>
