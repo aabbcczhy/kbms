@@ -20,3 +20,5 @@ spring:
     prefix: classpath:/templates/
     suffix: .html
     mode: HTML
+mybatis:
+  mapper-locations: classpath:/mapping/*.xml
