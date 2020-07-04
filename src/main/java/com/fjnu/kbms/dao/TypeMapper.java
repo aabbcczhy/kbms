@@ -4,6 +4,8 @@ import com.fjnu.kbms.bean.Type;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Mapper
 public interface TypeMapper {
@@ -14,6 +16,8 @@ public interface TypeMapper {
     int insertSelective(Type record);
 
     Type selectByPrimaryKey(Integer typeId);
+
+    List<Type> selectByTypeId();
 
     int updateByPrimaryKeySelective(Type record);
 

@@ -1,7 +1,11 @@
 package com.fjnu.kbms.dao;
 
 import com.fjnu.kbms.bean.User;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
+@Repository
+@Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);
 

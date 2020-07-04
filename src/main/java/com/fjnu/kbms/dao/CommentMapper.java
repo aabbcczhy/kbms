@@ -4,6 +4,8 @@ import com.fjnu.kbms.bean.Comment;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Mapper
 public interface CommentMapper {
@@ -18,4 +20,6 @@ public interface CommentMapper {
     int updateByPrimaryKeySelective(Comment record);
 
     int updateByPrimaryKey(Comment record);
+
+    List<Comment> selectByForeignKey(Integer commentAp);
 }
