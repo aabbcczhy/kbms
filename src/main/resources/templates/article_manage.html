@@ -76,7 +76,7 @@
 
                     <div class="layui-inline">
                         <button class="layui-btn layuiadmin-btn-useradmin" lay-submit=""
-                                lay-filter="LAY-user-front-search" data-type="reload" id="search_problem_btn">
+                                lay-filter="LAY-user-front-search" data-type="reload" id="search_article_btn">
                             <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
                         </button>
                     </div>
@@ -86,11 +86,11 @@
     </div>
     <table id="demo" class="layui-table" lay-filter="test"></table>
 </div>
-<script type="text/html" id="headpic_row">
+<script type="text/html" id="picture_row">
     {{#  if(d.headpic == ''){ }}
     <img src="/images/head.jpg" width="50" height="50" alt="头像" />
     {{#  } else { }}
-    <img src="/image/{{d.headpic}}" width="50" height="50" alt="头像" />
+    <img src="/image/{{d.picture}}" width="50" height="50" alt="头像" />
     {{#  } }}
 </script>
 <script type="text/html" id="barDemo">
@@ -121,6 +121,21 @@
                 form.render('select');
             }
         });
+
+        var Columns= [];
+        $.ajax({
+            type: "POST",
+            url: "/column/getAllColumns",
+            success: function (res) {
+                for(var i in res.data){
+                    Columns.push(res.data[i]);
+                }
+                for (var i=0;i<Columns.length;i++){
+                    $("#columnName").append('<option value="'+Columns[i].columnId+'">'+Columns[i].columnName+'</option>');
+                }
+                form.render('select');
+            }
+        });
     });
 </script>
 <script>
@@ -129,17 +144,18 @@
         var tableIns = table.render({
             elem: '#demo'
             ,height: 400
-            ,url: '/content/getProblems' //数据接口
-            ,id: 'problemReload'
+            ,url: '/content/getArticles' //数据接口
+            ,id: 'articleReload'
             ,page: true //开启分页
             ,cols: [
                 [ //表头
                     {field: 'apid',  align:'center',sort: true,title: 'ID'}
-                    ,{field: 'title', align:'center',title: '用户名'}
-                    ,{field: 'answer', align:'center',title: '回答'}
+                    ,{field: 'title', align:'center',title: '标题'}
+                    ,{field: 'answer', align:'center',title: '评论'}
                     ,{field: 'scan', align:'center',title: '浏览'}
                     ,{field: 'authorName', align:'center',title: '作者'}
                     ,{field: 'typeName', align:'center',title: '分类'}
+                    ,{field: 'columnName', align:'center',title: '专栏'}
                     ,{field: 'publishTime', align:'center',title: '发布时间'}
                     ,{field: 'right', align:'center',title: '操作',toolbar:'#barDemo'}
                 ]
@@ -149,24 +165,29 @@
             active = {
                 reload: function () {
                     var apid = $('#apid');
+                    var title = $('#title')
                     var typeTitle = $('#typeTitle');
+                    var columnName = $('#columnName');
                     var publishTime = $('#publishTime');
                     var status = $('#status');
                     //执行重载
-                    table.reload('problemReload', {
+                    table.reload('articleReload', {
                         page: {
                             curr: 1 //重新从第 1 页开始
                         },
                         where: {
                             apid: apid.val(),
+                            title:title.val(),
                             typeId: typeTitle.val(),
+                            columnId:columnName.val(),
                             publishTime: publishTime.val(),
-                            status: status.val()
+                            status: status.val(),
+                            isArticle:1
                         }
                     });
                 }
             };
-        $('#search_problem_btn').on('click', function () {
+        $('#search_article_btn').on('click', function () {
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
         });
@@ -179,7 +200,7 @@
                 case 'detail':
                     layer.open({
                         type : 2,
-                        title : '查看问题内容',
+                        title : '查看文章内容',
                         area : [ '450px', '600px' ],
                         offset : '150px',
                         btn : [ '确认', '取消' ],
@@ -187,16 +208,22 @@
                         resize : false,
                         shade : 0.4,
                         maxmin : true,
-                        content : 'toDetails',
+                        content : 'toArticleDetails',
                         success : function(layero, index) {
                             var body = layer.getChildFrame('body',
                                 index);
+                            if(data.picture!==null){
+                                body.find("#picture").attr("src","/image/" + data.picture);
+                                body.find("#fileName").val(data.data);
+                            }
                             body.find("#apid").val(
                                 data.apid);
                             body.find("#title").val(
                                 data.title);
                             body.find("#typeName").val(
                                 data.typeName);
+                            body.find('#columnName').val(
+                                data.columnName);
                             body.find("#authorName").val(
                                 data.authorName);
                             body.find("#content").val(
@@ -218,7 +245,7 @@
                 case 'audit':
                     layer.open({
                         type : 2,
-                        title : '审核问题内容',
+                        title : '审核文章内容',
                         area : [ '250px', '250px' ],
                         offset : '150px',
                         btn : [ '确认', '取消' ],

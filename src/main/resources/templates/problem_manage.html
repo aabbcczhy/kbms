@@ -120,7 +120,7 @@
             ,cols: [
                 [ //表头
                     {field: 'apid',  align:'center',sort: true,title: 'ID'}
-                    ,{field: 'title', align:'center',title: '用户名'}
+                    ,{field: 'title', align:'center',title: '标题'}
                     ,{field: 'answer', align:'center',title: '回答'}
                     ,{field: 'scan', align:'center',title: '浏览'}
                     ,{field: 'authorName', align:'center',title: '作者'}
@@ -146,7 +146,8 @@
                             apid: apid.val(),
                             typeId: typeTitle.val(),
                             publishTime: publishTime.val(),
-                            status: status.val()
+                            status: status.val(),
+                            isArticle: 0
                         }
                     });
                 }

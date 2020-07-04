@@ -26,5 +26,11 @@ public interface ApMapper {
 
     List<Ap> getProblemList(@Param("offset") Integer offset, @Param("limit") Integer limit,
                             @Param("apid") Integer apid, @Param("typeId") Integer typeId,
-                            @Param("publishTime") String publishTime, @Param("status") Byte status);
+                            @Param("publishTime") String publishTime, @Param("status") Byte status,
+                            @Param("isArticle") Byte isArticle);
+
+    List<Ap> getArticleList(@Param("offset") Integer offset, @Param("limit") Integer limit,
+                            @Param("apid") Integer apid, @Param("title")String title,@Param("typeId") Integer typeId,
+                            @Param("columnId") Integer columnId, @Param("publishTime") String publishTime, @Param("status") Byte status,
+                            @Param("isArticle") Byte isArticle);
 }

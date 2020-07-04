@@ -1,14 +1,14 @@
 package com.fjnu.kbms.controller;
 
 import com.fjnu.kbms.bean.Ap;
+import com.fjnu.kbms.bean.Column;
 import com.fjnu.kbms.error.BusinessException;
 import com.fjnu.kbms.error.EmError;
 import com.fjnu.kbms.response.Response;
-import com.fjnu.kbms.service.ApService;
-import com.fjnu.kbms.service.CommentService;
-import com.fjnu.kbms.service.TypeService;
-import com.fjnu.kbms.service.UserService;
+import com.fjnu.kbms.service.*;
+import com.fjnu.kbms.vo.ArticleListVO;
 import com.fjnu.kbms.vo.ProblemListVO;
+import com.fjnu.kbms.vo.TableVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,25 +27,29 @@ public class ContentController {
     private final CommentService commentService;
     private final TypeService typeService;
     private final UserService userService;
+    private final ColumnService columnService;
 
     @Autowired
-    public ContentController(ApService apService, CommentService commentService, TypeService typeService, UserService userService) {
+    public ContentController(ApService apService, CommentService commentService, TypeService typeService,
+                             UserService userService,ColumnService columnService) {
         this.apService = apService;
         this.commentService = commentService;
         this.typeService = typeService;
         this.userService = userService;
+        this.columnService = columnService;
     }
 
     @RequestMapping("/problem_list")
-    public ModelAndView toList(){
+    public ModelAndView toProblemList(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("problem_manage");
         return modelAndView;
     }
     @RequestMapping("/getProblems")
     @ResponseBody
-    public TableVO getProblems(Integer page,Integer limit,Integer apid,Integer typeId,String publishTime,Byte status){
-        List<Ap> Ap_list = apService.getProblemList(page,limit,apid,typeId,publishTime,status);
+    public TableVO getProblems(Integer page, Integer limit, Integer apid, Integer typeId, String publishTime,
+                               Byte status,Byte isArticle){
+        List<Ap> Ap_list = apService.getProblemList(page,limit,apid,typeId,publishTime,status,isArticle);
         List<ProblemListVO> problemListVOList = new ArrayList<>();
         for (Ap ap : Ap_list) {
             ProblemListVO problemListVO = new ProblemListVO();
@@ -91,6 +95,38 @@ public class ContentController {
         return "success";
     }
 
+    @RequestMapping("/article_list")
+    public ModelAndView toArticleList(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("article_manage");
+        return modelAndView;
+    }
+
+    @RequestMapping("/getArticles")
+    @ResponseBody
+    public TableVO getArticles(Integer page, Integer limit, Integer apid, String title,Integer typeId, Integer columnId,
+                               String publishTime, Byte status,Byte isArticle){
+        List<Ap> Ap_list = apService.getArticlesList(page,limit,apid,title,typeId,columnId,publishTime,status,isArticle);
+        List<ArticleListVO> articleListVOSList = new ArrayList<>();
+        for (Ap ap : Ap_list) {
+            ArticleListVO articleListVO = new ArticleListVO();
+            BeanUtils.copyProperties(articleListVO,ap);
+            articleListVO.setTypeName(typeService.selectByPrimaryKey(ap.getTypeId()).getTypeTitle());
+            articleListVO.setTypeName(columnService.selectByPrimaryKey(ap.getColumnId()).getColumnName());
+            articleListVO.setAuthorName(userService.selectByPrimaryKey(ap.getAuthorId()).getUserName());
+            articleListVO.setAnswer((commentService.selectByForeignKey(ap.getApid())).size());
+
+            articleListVOSList.add(articleListVO);
+        }
+        return new TableVO(articleListVOSList.size(),articleListVOSList);
+    }
+
+    @RequestMapping("/toArticleDetails")
+    public ModelAndView toArticleDetails(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("article_details");
+        return modelAndView;
+    }
 
 
 

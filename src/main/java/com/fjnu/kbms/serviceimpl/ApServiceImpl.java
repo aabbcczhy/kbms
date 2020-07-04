@@ -12,9 +12,16 @@ public class ApServiceImpl implements ApService {
     @Autowired
     ApMapper apMapper;
     @Override
-    public List<Ap> getProblemList(Integer page,Integer limit,Integer apid,Integer typeId,String publishTime,Byte status) {
-        return apMapper.getProblemList((page-1)*limit,limit,apid,typeId,publishTime,status);
+    public List<Ap> getProblemList(Integer page,Integer limit,Integer apid,Integer typeId,
+                                   String publishTime,Byte status,Byte isArticle) {
+        return apMapper.getProblemList((page-1)*limit,limit,apid,typeId,publishTime,status,isArticle);
     }
+
+    @Override
+    public List<Ap> getArticlesList(Integer page, Integer limit, Integer apid, String title, Integer typeId, Integer columnId, String publishTime, Byte status, Byte isArticle) {
+        return apMapper.getArticleList((page-1)*limit,limit,apid,title,typeId,columnId,publishTime,status,isArticle);
+    }
+
 
     @Override
     public int deleteByPrimaryKey(Integer apid) {
