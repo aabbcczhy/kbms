@@ -11,9 +11,28 @@
     <result column="create_time" jdbcType="VARCHAR" property="createTime" />
     <result column="status" jdbcType="TINYINT" property="status" />
   </resultMap>
+
+  <resultMap id="ColumnListMap" type="com.fjnu.kbms.vo.ColumnListVO">
+    <id column="column_id" jdbcType="INTEGER" property="columnId" />
+    <result column="column_name" jdbcType="VARCHAR" property="columnName" />
+    <result column="column_picture" jdbcType="VARCHAR" property="columnPicture" />
+    <result column="column_desc" jdbcType="VARCHAR" property="columnDesc" />
+    <result column="creator_id" jdbcType="INTEGER" property="creatorId" />
+    <result column="scan" jdbcType="INTEGER" property="scan" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+
+      <result  column="user_name" jdbcType="VARCHAR" property="creatorName"/>
+
+  </resultMap>
   <sql id="Base_Column_List">
     column_id, column_name, column_picture, column_desc, creator_id, scan, create_time, 
     status
+  </sql>
+  <sql id="MyColumn_List">
+    column_id, column_name, column_picture, column_desc, user_name, scan, create_time,
+    column.status
+
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -21,6 +40,14 @@
     from column
     where column_id = #{columnId,jdbcType=INTEGER}
   </select>
+
+  <select id="selectAll" parameterType="java.lang.Integer" resultMap="ColumnListMap">
+    select
+    <include refid="MyColumn_List" />
+    from `column`,`user`
+    where creator_id=user_id
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from column
     where column_id = #{columnId,jdbcType=INTEGER}
