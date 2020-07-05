@@ -17,5 +17,15 @@ public interface ApService {
     int deleteByPrimaryKey(Integer apid);
 
     int updateByPrimaryKeySelective(Ap record);
+    /**
+     * @Method 返回整个问题和文章列表目前直接按时间倒序排列
+     * @Author QuanJiaXing
+     * @Version  1.0
+     * @Description
+     * @Return 
+     * @Exception
+     * @Date 2020/7/6 1:48
+     */
+    List<Ap> getArticleAndProblemListAll(Integer page, Integer limit);
 
 }

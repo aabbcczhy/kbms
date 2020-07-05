@@ -240,5 +240,9 @@
     </if>
     limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
   </select>
-
+  <select id="getArticleAndProblemListAll" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    <include refid="Blob_Column_List" />
+    from ap limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
 </mapper>

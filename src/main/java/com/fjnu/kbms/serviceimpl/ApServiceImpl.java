@@ -32,4 +32,9 @@ public class ApServiceImpl implements ApService {
     public int updateByPrimaryKeySelective(Ap record) {
         return apMapper.updateByPrimaryKeySelective(record);
     }
+
+    @Override
+    public List<Ap> getArticleAndProblemListAll(Integer page, Integer limit) {
+        return apMapper.getArticleAndProblemListAll(page,limit);
+    }
 }

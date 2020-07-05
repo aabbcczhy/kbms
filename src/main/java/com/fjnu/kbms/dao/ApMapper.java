@@ -33,4 +33,15 @@ public interface ApMapper {
                             @Param("apid") Integer apid, @Param("title")String title,@Param("typeId") Integer typeId,
                             @Param("columnId") Integer columnId, @Param("publishTime") String publishTime, @Param("status") Byte status,
                             @Param("isArticle") Byte isArticle);
+    /**
+     * @Method
+     * @Author QuanJiaXing
+     * @Version  1.0
+     * @Description 返回整个问题和文章列表目前直接按时间倒序排列
+     * @param null
+     * @Return
+     * @Exception
+     * @Date 2020/7/6 1:43
+     */
+    List<Ap> getArticleAndProblemListAll(@Param("offset") Integer offset, @Param("limit") Integer limit);
 }
