@@ -22,7 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/content")
-public class ContentController {
+public class ApController {
     private final ApService apService;
     private final CommentService commentService;
     private final TypeService typeService;
@@ -30,8 +30,8 @@ public class ContentController {
     private final ColumnService columnService;
 
     @Autowired
-    public ContentController(ApService apService, CommentService commentService, TypeService typeService,
-                             UserService userService,ColumnService columnService) {
+    public ApController(ApService apService, CommentService commentService, TypeService typeService,
+                        UserService userService, ColumnService columnService) {
         this.apService = apService;
         this.commentService = commentService;
         this.typeService = typeService;
