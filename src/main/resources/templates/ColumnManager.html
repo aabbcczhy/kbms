@@ -41,9 +41,7 @@
         </form>
       </div>
       <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','./member-add.html',600,400)"><i class="layui-icon"></i>添加</button>
-        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+        <button class="layui-btn" onclick="x_admin_show('添加用户','/manager/ColumnManager/AddView',700,600)"><i class="layui-icon"></i>添加</button>
       </xblock>
 
       <table class="layui-table"  id="column" lay-filter="test">
@@ -75,8 +73,8 @@
           ,url: '/manager/initable' //数据接口
           ,page: true //开启分页
           ,cols: [
-              [
-              {field: 'columnName', title: '专栏名', width:120,sort: true}
+              [{field: 'columnId', title: '专栏编号', width:120,sort: true}
+              ,{field: 'columnName', title: '专栏名', width:120,sort: true}
               ,{field: 'columnDesc', title: '专栏描述', width:300, sort: true}
               ,{field: 'scan', title: '浏览数量', width:90}
               ,{field: 'creatorName', title: '创建者', width: 100}
@@ -87,7 +85,7 @@
         });
           table.on('tool(test)', function(obj){
               var data = obj.data;
-              console.log(data)
+             // console.log(data)
               if(obj.event === 'del'){
                   layer.confirm('真的删除行么', function(index){
 
@@ -95,7 +93,7 @@
                       layer.close(index);
                   });
               } else if(obj.event === 'edit'){
-                  x_admin_show('编辑专栏','/manager/ColumnManager/EditView',600,400);
+                  x_admin_show('编辑专栏','/manager/ColumnManager/EditView?parentColumnId='+data["columnId"],700,600);
               }
           });
 

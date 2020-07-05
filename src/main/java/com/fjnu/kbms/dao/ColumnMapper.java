@@ -22,5 +22,7 @@ public interface ColumnMapper {
 
     int updateByPrimaryKey(Column record);
 
+    int updateSectionByPrimaryKey(Column record);
+
     Vector<ColumnListVO> selectAll();
 }

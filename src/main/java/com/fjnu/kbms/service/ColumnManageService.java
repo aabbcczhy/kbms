@@ -9,6 +9,10 @@ import java.util.Vector;
 public interface ColumnManageService {
     public Vector<ColumnListVO> getAllColumn();
 
+    public int columnEdit(Column column);
 
+    public Column columnSearch(int columnId);
+
+    public int columnAdd(Column column);
 
 }

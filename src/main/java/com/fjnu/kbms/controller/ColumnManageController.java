@@ -7,10 +7,14 @@ import com.fjnu.kbms.service.ColumnManageServiceImpl;
 import com.fjnu.kbms.vo.ColumnListVO;
 import com.fjnu.kbms.vo.TableVO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
 import java.util.Vector;
 
 @RestController
@@ -39,18 +43,33 @@ public class ColumnManageController {
         mav.setViewName("Column_Add");
         return mav;
     }
-/*
+
     @RequestMapping("/ColumnManager/ColumnAdd")
-    public ModelAndView ColumnAdd(){
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("Column_Add");
-        return mav;
+    public Response ColumnAdd(Column column){
+        if(columnManageService.columnAdd(column)==1){
+            return Response.create(null,"200");
+        }else{
+            return Response.create(null,"500");
+        }
     }
-*/
+
+
+
     @RequestMapping("/ColumnManager/ColumnEdit")
     public Response ColumnEdit(Column column){
+        System.out.println("columnid="+column.getColumnId()+column.getColumnName()+column.getColumnDesc());
+        if(columnManageService.columnEdit(column)==1){
 
-       // return Response.create();
+            return Response.create(null,"200");
+        }else{
+            return Response.create(null,"500");
+        }
+        // return Response.create();
+    }
+
+    @RequestMapping("/ColumnManager/ColumnSearch")
+    public Column ColumnSearch(int columnId){
+        return columnManageService.columnSearch(columnId);
     }
 
     @RequestMapping("/ColumnManager/EditView")

@@ -18,5 +18,21 @@ public class ColumnManageServiceImpl implements ColumnManageService{
         return columnMapper.selectAll();
     }
 
+    @Override
+    public int columnEdit(Column column) {
+
+        return columnMapper.updateSectionByPrimaryKey(column);
+    }
+
+    @Override
+    public Column columnSearch(int columnId) {
+        return columnMapper.selectByPrimaryKey(columnId);
+    }
+
+    @Override
+    public int columnAdd(Column column) {
+        return columnMapper.insertSelective(column);
+    }
+
 
 }

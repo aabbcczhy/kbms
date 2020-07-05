@@ -37,7 +37,7 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from column
+    from `column`
     where column_id = #{columnId,jdbcType=INTEGER}
   </select>
 
@@ -49,11 +49,11 @@
   </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from column
+    delete from `column`
     where column_id = #{columnId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.fjnu.kbms.bean.Column">
-    insert into column (column_id, column_name, column_picture, 
+    insert into `column` (column_id, column_name, column_picture,
       column_desc, creator_id, scan, 
       create_time, status)
     values (#{columnId,jdbcType=INTEGER}, #{columnName,jdbcType=VARCHAR}, #{columnPicture,jdbcType=VARCHAR}, 
@@ -61,7 +61,7 @@
       #{createTime,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.fjnu.kbms.bean.Column">
-    insert into column
+    insert into `column`
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="columnId != null">
         column_id,
@@ -116,7 +116,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.fjnu.kbms.bean.Column">
-    update column
+    update `column`
     <set>
       <if test="columnName != null">
         column_name = #{columnName,jdbcType=VARCHAR},
@@ -143,7 +143,7 @@
     where column_id = #{columnId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fjnu.kbms.bean.Column">
-    update column
+    update `column`
     set column_name = #{columnName,jdbcType=VARCHAR},
       column_picture = #{columnPicture,jdbcType=VARCHAR},
       column_desc = #{columnDesc,jdbcType=VARCHAR},
@@ -151,6 +151,13 @@
       scan = #{scan,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=VARCHAR},
       status = #{status,jdbcType=TINYINT}
+    where column_id = #{columnId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateSectionByPrimaryKey" parameterType="com.fjnu.kbms.bean.Column">
+    update `column`
+    set column_name = #{columnName,jdbcType=VARCHAR},
+       column_desc = #{columnDesc,jdbcType=VARCHAR}
     where column_id = #{columnId,jdbcType=INTEGER}
   </update>
 </mapper>
