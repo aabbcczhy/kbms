@@ -12,5 +12,11 @@ public class IndexController {
         modelAndView.setViewName("index");
         return modelAndView;
     }
+    @RequestMapping("/front_index")
+    public ModelAndView toFrontIndex(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("front_index.html");
+        return modelAndView;
+    }
 
 }
