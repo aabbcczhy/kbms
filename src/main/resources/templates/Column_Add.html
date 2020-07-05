@@ -107,7 +107,7 @@
             elem: '#upload' //绑定元素
             ,url: '/upload' //上传接口
             ,done: function(res){
-                console.log(res);
+                //console.log(res);
                 //上传完毕回调
                 layer.msg("上传成功");
 
@@ -132,7 +132,7 @@
                 "columnDesc":$("#columnDesc").val(),
                 "creatorId":0
             };
-            console.log(mydata);
+            //console.log(mydata);
             $.ajax({
                 url:"/manager/ColumnManager/ColumnAdd",
                 dataType:"json",

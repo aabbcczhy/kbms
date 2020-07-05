@@ -114,7 +114,7 @@
             elem: '#upload' //绑定元素
             ,url: '/upload' //上传接口
             ,done: function(res){
-                console.log(res);
+                //console.log(res);
                 //上传完毕回调
                 layer.msg("上传成功");
 
@@ -155,7 +155,7 @@
 
         //监听提交
         form.on('submit(edit)', function(data){
-            console.log(data.field);
+            //console.log(data.field);
             $.ajax({
                 url:"/manager/ColumnManager/ColumnEdit",
                 dataType:"json",
