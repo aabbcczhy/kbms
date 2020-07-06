@@ -1,5 +1,6 @@
 package com.fjnu.kbms.controller;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -60,4 +61,10 @@ public class IndexController {
         return modelAndView;
     }
 
+    @RequestMapping("/publish")
+    public ModelAndView publish(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("publish");
+        return modelAndView;
+    }
 }

@@ -11,6 +11,7 @@ import com.fjnu.kbms.vo.ProblemListVO;
 import com.fjnu.kbms.vo.TableVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -126,6 +127,14 @@ public class ApController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("article_details");
         return modelAndView;
+    }
+
+    @PostMapping("/addArticle")
+    public Response addArticle(Ap ap){
+        // TODO 此处应获取登录用户的id作为作者id,这里还没对接先写死为1
+        ap.setAuthorId(1);
+        apService.addArticle(ap);
+        return Response.create("添加成功");
     }
 
     /**

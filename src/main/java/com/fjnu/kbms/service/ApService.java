@@ -17,6 +17,15 @@ public interface ApService {
     int deleteByPrimaryKey(Integer apid);
 
     int updateByPrimaryKeySelective(Ap record);
+
+    /**
+     * 添加文章
+     * @Author aabbcczhy
+     * @param ap
+     * @return
+     */
+    int addArticle(Ap ap);
+
     /**
      * @Method 返回整个问题和文章列表目前直接按时间倒序排列
      * @Author QuanJiaXing
