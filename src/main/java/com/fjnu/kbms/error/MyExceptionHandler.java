@@ -1,7 +1,7 @@
 package com.fjnu.kbms.error;
 
 import com.fjnu.kbms.response.Response;
-import com.sun.media.jfxmedia.logging.Logger;
+//import com.sun.media.jfxmedia.logging.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,8 +29,8 @@ public class MyExceptionHandler {
 		}else {
 			responseData.put("errorCode", EmError.UNKNOWN_ERROR.getErrorCode());
 			responseData.put("errorMessage", EmError.UNKNOWN_ERROR.getErrorMessage());
-			Logger.logMsg(Logger.ERROR,e.getMessage());
-			System.err.println(e.getMessage());
+			//Logger.logMsg(Logger.ERROR,e.getMessage());
+			System.out.println(e.getMessage());
 		}
 		commonReturnType.setData(responseData);
 		return commonReturnType;

@@ -6,6 +6,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 
-@org.springframework.web.bind.annotation.RestController
+@RestController
 public class PhotoController {
 
     @Value("${spring.servlet.multipart.location}")

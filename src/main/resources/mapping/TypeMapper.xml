@@ -13,21 +13,28 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from type
+    from `type`
     where type_id = #{typeId,jdbcType=INTEGER}
   </select>
+  <select id="selectAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from `type`
+  </select>
+
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from type
+    delete from `type`
     where type_id = #{typeId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.fjnu.kbms.bean.Type">
-    insert into type (type_id, type_title, type_weight, 
+    insert into `type` (type_id, type_title, type_weight,
       status)
     values (#{typeId,jdbcType=INTEGER}, #{typeTitle,jdbcType=VARCHAR}, #{typeWeight,jdbcType=INTEGER}, 
       #{status,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.fjnu.kbms.bean.Type">
-    insert into type
+    insert into `type`
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="typeId != null">
         type_id,
@@ -58,7 +65,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.fjnu.kbms.bean.Type">
-    update type
+    update `type`
     <set>
       <if test="typeTitle != null">
         type_title = #{typeTitle,jdbcType=VARCHAR},
@@ -73,7 +80,7 @@
     where type_id = #{typeId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.fjnu.kbms.bean.Type">
-    update type
+    update `type`
     set type_title = #{typeTitle,jdbcType=VARCHAR},
       type_weight = #{typeWeight,jdbcType=INTEGER},
       status = #{status,jdbcType=TINYINT}
