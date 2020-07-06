@@ -1,7 +1,6 @@
 package com.fjnu.kbms.controller;
 
 import com.fjnu.kbms.bean.Ap;
-import com.fjnu.kbms.bean.Column;
 import com.fjnu.kbms.error.BusinessException;
 import com.fjnu.kbms.error.EmError;
 import com.fjnu.kbms.response.Response;
