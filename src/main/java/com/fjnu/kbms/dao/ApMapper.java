@@ -20,4 +20,6 @@ public interface ApMapper {
     int updateByPrimaryKeyWithBLOBs(Ap record);
 
     int updateByPrimaryKey(Ap record);
+
+    int updateScan(Integer apid);
 }

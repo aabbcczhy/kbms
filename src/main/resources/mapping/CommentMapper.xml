@@ -11,6 +11,12 @@
   <sql id="Base_Column_List">
     comment_id, comment_content, comment_time, comment_ap, comment_user
   </sql>
+  <select id="selectByApId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from comment
+    where comment_ap = #{apid,jdbcType=INTEGER}
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

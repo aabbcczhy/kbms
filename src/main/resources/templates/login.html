@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="stylesheet"  th:href="@{/css/login.css}">
+    <link rel="stylesheet"  th:href="@{/layui/css/layui.css}">
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="login-main">
+    <header class="layui-elip">登录</header>
+    <form class="layui-form">
+        <div class="layui-input-inline">
+            <input type="text" id="user_name" name="username" required lay-verify="required" placeholder="用户名" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-input-inline">
+            <input type="password" id="password" name="password" required lay-verify="required" placeholder="密码" autocomplete="off"
+                   class="layui-input">
+        </div>
+        <div class="layui-input-inline login-btn">
+            <button lay-submit lay-filter="login" class="layui-btn">登录</button>
+        </div>
+        <hr/>
+        <p><a href="/register" class="fl">立即注册</a><a href="javascript:;" class="fr">游客访问</a></p>
+    </form>
+</div>
+
+<script  th:src="@{/layui/layui.js}" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.use(['form','layer','jquery'], function () {
+        // 操作对象
+        var form = layui.form;
+        var $ = layui.jquery;
+        form.on('submit(login)',function (data) {
+            $.ajax({
+                url:'/loginCheck',
+                data:data.field,
+                dataType:'json',
+                type:'POST',
+                success:function (res) {
+                    if(res.status === "success"){
+                        if(res.data.isAdmin){
+                            // 跳转至后台管理页面
+                            console.log("后台页面跳转...")
+                        }else{
+                            // 跳转至前台主页面
+                            console.log("前台页面跳转...")
+                        }
+                    }else{
+                        layer.msg("用户名或密码输入错误");
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+</body>
+</html>

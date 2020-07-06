@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>账户设置</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="stylesheet"  th:href="@{/css/detail.css}">
+    <link rel="stylesheet"  th:href="@{/css/login.css}">
+    <link rel="stylesheet"  th:href="@{/layui/css/layui.css}">
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<header>
+    <ul class="layui-nav layui-bg-blue" style="text-align: center;">
+        <div class="layui-input-inline">
+            <input id="search_block" type="text" name="title" placeholder="搜索问题、话题或人..." autocomplete="off" class="layui-input">
+        </div>
+        <li class="layui-nav-item">
+            <a href=""><i class="layui-icon layui-icon-search" style="font-size: 20px"></i> 发现</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href=""><i class="layui-icon layui-icon-templeate-1" style="font-size: 20px"></i> 专栏</a>
+        </li>
+    </ul>
+    <ul class="layui-nav layui-bg-blue layui-layout-right">
+        <li class="layui-nav-item">
+            <a href="javascript:;">
+                <img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
+            </a>
+            <dl class="layui-nav-child">
+                <dd><a href="/acSetting">基本资料</a></dd>
+                <dd><a href="/pwSetting">修改密码</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="/logout">退出</a></li>
+    </ul>
+</header>
+<div class="layui-container" style="margin-top: 50px">
+    <form class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱:</label>
+            <div class="layui-input-block">
+                <input type="text" name="email" lay-verify="email" placeholder="请输入邮箱地址" autocomplete="off"
+                       class="layui-input" th:value="${user.email}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">真实姓名</label>
+            <div class="layui-input-block">
+                <input type="text" name="realName" autocomplete="off" placeholder="请输入真实姓名"
+                       class="layui-input" th:value="${user.realName}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block">
+                <input type="radio" name="sex" value="1" title="男" th:checked="${user.sex eq 1}">
+                <input type="radio" name="sex" value="0" title="女" th:checked="${user.sex eq 0}">
+                <input type="radio" name="sex" value="2" title="保密" th:checked="${user.sex eq 2}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">出生日期</label>
+                <div class="layui-input-block">
+                    <input type="text" name="birthday" id="date" autocomplete="off" class="layui-input" th:value="${user.birthday}">
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">一句话描述</label>
+            <div class="layui-input-block">
+                <input type="text" name="desc" autocomplete="off" placeholder="你的个性签名" class="layui-input" th:value="${user.desc}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">QQ:</label>
+            <div class="layui-input-block">
+                <input type="text" name="qq" autocomplete="off" placeholder="" class="layui-input" th:value="${user.qq}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">电话号码:</label>
+            <div class="layui-input-block">
+                <input type="text" name="telephone" lay-verify="phone" autocomplete="off" placeholder=""
+                       class="layui-input" th:value="${user.telephone}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">个人网址:</label>
+            <div class="layui-input-block">
+                <input type="text" name="website" autocomplete="off" placeholder="请输入个人网址"
+                       class="layui-input" th:value="${user.website}">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">职业</label>
+            <div class="layui-input-block">
+                <input type="text" name="job" autocomplete="off" placeholder="请输入职业" class="layui-input" th:value="${user.job}">
+            </div>
+        </div>
+
+        <div class="layui-form-item" align="center">
+            <button class="layui-btn" lay-submit lay-filter="save">保存</button>
+        </div>
+    </form>
+</div>
+<div class="layui-footer">
+    <p>© 2020 <a href="/">layui.com</a> MIT license</p>
+</div>
+
+<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+<script type="text/javascript">
+    layui.use(['element', 'form', 'laydate','jquery'], function(){
+        var form = layui.form;
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var laydate = layui.laydate;
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+
+        //监听提交
+        form.on('submit(save)', function(data){
+            $.ajax({
+                type: "POST",
+                url: "/user/updateUserInfo",
+                data: data.field,
+                dataType: "json",
+                success: function (res) {
+                    if(res.status === "success"){
+                        layer.msg("修改成功");
+                        console.log("跳转回前台页面....");
+                    }else{
+                        layer.msg("修改失败");
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+</body>
+</html>

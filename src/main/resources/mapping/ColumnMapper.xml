@@ -17,16 +17,16 @@
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
-    <include refid="Base_Column_List" />
-    from column
+    *
+    from `column`
     where column_id = #{columnId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from column
+    delete from `column`
     where column_id = #{columnId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.fjnu.kbms.bean.Column">
-    insert into column (column_id, column_name, column_picture, 
+    insert into `column` (column_id, column_name, column_picture,
       column_desc, creator_id, scan, 
       create_time, status)
     values (#{columnId,jdbcType=INTEGER}, #{columnName,jdbcType=VARCHAR}, #{columnPicture,jdbcType=VARCHAR}, 

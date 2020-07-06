@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>详情页</title>
+    <title th:text="${apDetail.title}"></title>
     <link rel="stylesheet" href="/layui/css/layui.css" />
     <link rel="stylesheet" href="/css/detail.css" />
 </head>
@@ -48,100 +48,37 @@
             <div class="layui-col-xs13 layui-col-md9">
                 <div class="layui-card" style="border-right: 1px solid #e6e6e6;">
                     <div class="layui-card-header">
-                        <h2>python基础3</h2>
+                        <h2 th:text="${apDetail.title}"></h2>
                     </div>
-                    <div class="layui-card-body content">
-                        <p>python基础知识第3小节</p>
-                        <p></p>
-                        <div class="aw-upload-img-list active">
-                            <a href="http://zhishiku.little-star.me/uploads/article/20200414/264826331723d4c9f138533108202788.png" target="_blank" data-fancybox-group="thumb" rel="lightbox">
-                                <img src="http://zhishiku.little-star.me/uploads/article/20200414/264826331723d4c9f138533108202788.png" class="img-polaroid" title="http://zhishiku.little-star.me/uploads/article/20200414/264826331723d4c9f138533108202788.png" alt="http://zhishiku.little-star.me/uploads/article/20200414/264826331723d4c9f138533108202788.png">
-                            </a>
-                        </div>
-                        <p></p>
-                        <p>&nbsp;</p>
-                        <p>&nbsp;</p>
-                        <div style="text-align: center;">
-                            <video controls="controls" src="http://zhishiku.little-star.me/uploads/article/20200414/4d1823db1b9b093ff99a19745cbbebcb.mp4" style="max-width: 100%; height: auto;">&nbsp;</video>
-                        </div>
-                        <p>&nbsp;</p>
-                    </div>
+                    <div th:utext="${apDetail.content}" class="layui-card-body content"></div>
                     <div class="layui-card-body clearfix">
-                        <p class="pull-left">浏览量：23</p>
-                        <p class="pull-right">2020-07-03</p>
+                        <p th:text="'浏览量：' + ${apDetail.scan}" class="pull-left"></p>
+                        <p th:text="${apDetail.publishTime}" class="pull-right"></p>
                     </div>
                     <div class="layui-card-header comment-header">
-                        <h2>4条评论</h2>
+                        <h2 th:text="${apDetail.commentVOList.size()} + '条评论'">4条评论</h2>
                     </div>
                     <div class="layui-card-body comment-body">
-                        <div class="comment-item">
+                        <div th:each="commentVO:${apDetail.commentVOList}" class="comment-item">
                             <div class="mod-head">
-                                <a class="user-img" href="http://zhishiku.little-star.me/?/people/8">
-                                    <img src="http://zhishiku.little-star.me/static/common/avatar-mid-img.png" alt="zhangsan">
+                                <a class="user-img">
+                                    <img th:src="${commentVO.commentUserHeadPicture}" th:alt="${commentVO.commentUserName}">
                                 </a>
-                                <p><a href="http://zhishiku.little-star.me/?/people/8">zhangsan</a></p>
+                                <p><a th:text="${commentVO.commentUserName}"></a></p>
                             </div>
                             <div class="mod-body">
-                                <div class="markitup-box">111</div>
+                                <div class="markitup-box" th:text="${commentVO.commentContent}"></div>
                             </div>
                             <div class="mod-footer">
                                 <div class="meta">
-                                    <span class="pull-right text-color-999">5 天前</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-item">
-                            <div class="mod-head">
-                                <a class="user-img" href="http://zhishiku.little-star.me/?/people/8">
-                                    <img src="http://zhishiku.little-star.me/static/common/avatar-mid-img.png" alt="zhangsan">
-                                </a>
-                                <p><a href="http://zhishiku.little-star.me/?/people/8">zhangsan</a></p>
-                            </div>
-                            <div class="mod-body">
-                                <div class="markitup-box">111</div>
-                            </div>
-                            <div class="mod-footer">
-                                <div class="meta">
-                                    <span class="pull-right text-color-999">5 天前</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-item">
-                            <div class="mod-head">
-                                <a class="user-img" href="http://zhishiku.little-star.me/?/people/8">
-                                    <img src="http://zhishiku.little-star.me/static/common/avatar-mid-img.png" alt="zhangsan">
-                                </a>
-                                <p><a href="http://zhishiku.little-star.me/?/people/8">zhangsan</a></p>
-                            </div>
-                            <div class="mod-body">
-                                <div class="markitup-box">111</div>
-                            </div>
-                            <div class="mod-footer">
-                                <div class="meta">
-                                    <span class="pull-right text-color-999">5 天前</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="comment-item">
-                            <div class="mod-head">
-                                <a class="user-img" href="http://zhishiku.little-star.me/?/people/8">
-                                    <img src="http://zhishiku.little-star.me/static/common/avatar-mid-img.png" alt="zhangsan">
-                                </a>
-                                <p><a href="http://zhishiku.little-star.me/?/people/8">zhangsan</a></p>
-                            </div>
-                            <div class="mod-body">
-                                <div class="markitup-box">111</div>
-                            </div>
-                            <div class="mod-footer">
-                                <div class="meta">
-                                    <span class="pull-right text-color-999">5 天前</span>
+                                    <span class="pull-right text-color-999" th:text="${commentVO.commentTime}"></span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="layui-card-body comment-area">
-                        <!-- <p>要回复文章请先<a href="javascript:;">登录</a>或<a href="javascript:;">注册</a></p> -->
-                        <form class="layui-form" action="#">
+                        <p>要回复文章请先<a href="javascript:;">登录</a>或<a href="javascript:;">注册</a></p>
+                        <!-- <form class="layui-form" action="#">
                             <div class="layui-form-item layui-form-text reply-item">
                                 <div class="layui-input-inline">
                                     <a href="http://zhishiku.little-star.me/?/people/" class="aw-user-name"><img alt="aabbcczhy" src="http://zhishiku.little-star.me/static/common/avatar-mid-img.png"></a>
@@ -155,7 +92,7 @@
                                     <button class="layui-btn layui-btn-normal pull-right" lay-submit lay-filter="formDemo">回复</button>
                                 </div>
                             </div>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </div>
@@ -166,11 +103,11 @@
                 <div class="mod-body">
                     <dl>
                         <dt class="pull-left">
-                            <a href="http://zhishiku.little-star.me/?/people/1"><img alt="tong" src="http://zhishiku.little-star.me/uploads/avatar/000/00/00/01_avatar_max.jpg"></a>
+                            <a><img th:alt="${apDetail.authorName}" th:src="${apDetail.authorPicture}"></a>
                             </dt>
                         <dd class="pull-left userinfo">
-                            <a class="aw-user-name" href="http://zhishiku.little-star.me/?/people/1">tong</a>
-                            <p>神秘嘉宾</p>
+                            <a class="aw-user-name" th:text="${apDetail.authorName}"></a>
+                            <p th:text="${apDetail.authorRealName}"></p>
                         </dd>
                     </dl>
                 </div>
