@@ -2,7 +2,7 @@ package com.fjnu.kbms.controller;
 
 import com.fjnu.kbms.bean.Type;
 import com.fjnu.kbms.response.Response;
-import com.fjnu.kbms.service.TypeManageServiceImpl;
+import com.fjnu.kbms.serviceimpl.TypeManageServiceImpl;
 import com.fjnu.kbms.vo.TableVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

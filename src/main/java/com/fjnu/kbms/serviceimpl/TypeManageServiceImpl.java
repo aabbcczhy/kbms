@@ -1,9 +1,9 @@
-package com.fjnu.kbms.service;
+package com.fjnu.kbms.serviceimpl;
 
-import com.fjnu.kbms.bean.Type;
 import com.fjnu.kbms.bean.Type;
 import com.fjnu.kbms.dao.TypeMapper;
 
+import com.fjnu.kbms.service.TypeManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import java.util.Vector;
  * @date : 2020-07-05 23:33
  **/
 @Service
-public class TypeManageServiceImpl implements TypeManageService{
+public class TypeManageServiceImpl implements TypeManageService {
 
     @Autowired
     TypeMapper typeMapper;
