@@ -34,6 +34,11 @@ public class ApServiceImpl implements ApService {
     }
 
     @Override
+    public int addArticle(Ap ap) {
+        return apMapper.insertSelective(ap);
+    }
+
+    @Override
     public List<Ap> getArticleAndProblemListAll(Integer page, Integer limit) {
         return apMapper.getArticleAndProblemListAll(page,limit);
     }

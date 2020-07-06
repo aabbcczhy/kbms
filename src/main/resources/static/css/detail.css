@@ -1,0 +1,100 @@
+#search_block {
+    width: 300px;
+}
+
+.layui-container {
+    margin-top: 30px;
+}
+
+.mod-head {
+    height: 50px;
+    line-height: 50px;
+    padding-left: 20px;
+    padding-bottom: 5px;
+}
+
+.mod-body dl {
+    height: auto;
+    overflow: hidden;
+    margin: 10px 20px;
+}
+
+.pull-left {
+    float: left;
+}
+
+.mod-body img {
+    width: 32px;
+    height: 32px;
+}
+
+.userinfo {
+    padding-left: 15px;
+}
+
+.layui-card-header {
+    height: 80px;
+    line-height: 80px;
+}
+
+.comment-item {
+    position: relative;
+    padding: 30px 0;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.comment-item .mod-footer,
+.comment-item .mod-head,
+.comment-item .mod-body {
+    position: relative;
+    padding-left: 50px;
+}
+
+.comment-item .user-img {
+    position: absolute;
+    left: 0;
+    top: 3px;
+    width: 40px;
+    height: 40px;
+}
+
+.comment-item .user-img img {
+    width: 32px;
+    height: 32px;
+}
+
+.pull-right {
+    float: right;
+}
+
+.comment-area p {
+    text-align: center;
+}
+
+.comment-area a {
+    color: #155faa !important
+}
+
+.reply-item img {
+    width: 32px;
+    height: 32px;
+}
+
+.reply-content {
+    margin-left: 50px !important
+}
+
+.layui-footer {
+    height: 100px;
+    text-align: center;
+}
+
+.layui-footer p {
+    line-height: 100px;
+}
+
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}

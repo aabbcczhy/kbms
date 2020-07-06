@@ -29,7 +29,7 @@ public class PhotoController {
         return Response.create(newName);
     }
 
-    @RequestMapping("/image/{fileName:.+}")
+    @RequestMapping("**/image/{fileName:.+}")
     public ResponseEntity<Resource> getPhoto(@PathVariable String fileName){
         try{
             return ResponseEntity.ok(resourceLoader.getResource("file:" + uploadPath + "/" + fileName));
