@@ -38,11 +38,20 @@ public class IndexController {
     public ModelAndView columnIndex(){
         ModelAndView modelAndView = new ModelAndView();
         java.util.List<com.fjnu.kbms.bean.Column> columns = columnService.getAllColumns();
+        java.util.List<com.fjnu.kbms.bean.Ap> articles=apService.getArticleAndProblemListAll(1,10);
         modelAndView.addObject("columns",columns);
+        modelAndView.addObject("articles",articles);
         modelAndView.setViewName("column.html");
         return modelAndView;
     }
-
+    @RequestMapping("/column_list")
+    public ModelAndView getColumnList(){
+        ModelAndView modelAndView = new ModelAndView();
+        java.util.List<com.fjnu.kbms.bean.Ap> articles=apService.getArticleAndProblemListByType(1,10,1);
+        modelAndView.addObject("articles",articles);
+        modelAndView.setViewName("column_list.html");
+        return modelAndView;
+    }
     /**
      * @Method 添加文章
      * @Author QuanJiaXing

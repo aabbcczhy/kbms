@@ -244,4 +244,9 @@
     select *
     from ap limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
   </select>
+  <select id="getArticleAndProblemListByType" resultMap="BaseResultMap">
+    select *
+    from ap where type_id=#{typeId,jdbcType=INTEGER}
+    limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
 </mapper>

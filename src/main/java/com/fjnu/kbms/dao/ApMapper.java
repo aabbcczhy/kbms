@@ -44,4 +44,14 @@ public interface ApMapper {
      * @Date 2020/7/6 1:43
      */
     List<Ap> getArticleAndProblemListAll(@Param("offset") Integer offset, @Param("limit") Integer limit);
+    /**
+     * @Method
+     * @Author QuanJiaXing
+     * @Version  1.0
+     * @Description
+     * @Return
+     * @Exception 根据typeid查询
+     * @Date 2020/7/6 16:01
+     */
+    List<Ap> getArticleAndProblemListByType(@Param("offset") Integer offset, @Param("limit") Integer limit,@Param("typeId") Integer typeId);
 }

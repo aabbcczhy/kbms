@@ -42,4 +42,9 @@ public class ApServiceImpl implements ApService {
     public List<Ap> getArticleAndProblemListAll(Integer page, Integer limit) {
         return apMapper.getArticleAndProblemListAll(page,limit);
     }
+
+    @Override
+    public java.util.List<com.fjnu.kbms.bean.Ap> getArticleAndProblemListByType(Integer page, Integer limit, Integer type) {
+        return apMapper.getArticleAndProblemListByType(page,limit,type);
+    }
 }
