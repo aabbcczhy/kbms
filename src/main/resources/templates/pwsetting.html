@@ -21,19 +21,19 @@
     <header class="layui-elip">修改密码 </header>
     <form class="layui-form">
         <div class="layui-input-inline">
-            <input type="text" id="L_password" name="lpass" required lay-verify="required" placeholder="当前密码" autocomplete="off"
+            <input type="text" id="password" name="password" required lay-verify="required" placeholder="当前密码" autocomplete="off"
                    class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="password" id="password" name="upass" required lay-verify="required" placeholder="新密码" autocomplete="off"
+            <input type="password" id="npassword" name="npassword" required lay-verify="required" placeholder="新密码" autocomplete="off"
                    class="layui-input">
         </div>
         <div class="layui-input-inline">
-            <input type="password" id="L_repass" name="repass" required lay-verify="required" placeholder="确认密码" autocomplete="off"
+            <input type="password" id="cpass" name="cpass" required lay-verify="required" placeholder="确认密码" autocomplete="off"
                    class="layui-input">
         </div>
         <div class="layui-input-inline login-btn">
-            <button lay-submit lay-filter="edit" class="layui-btn">注册</button>
+            <button lay-submit lay-filter="edit" class="layui-btn">修改</button>
         </div>
     </form>
 </div>
@@ -46,7 +46,7 @@
         //自定义验证
         form.verify({
             repass: function(value){
-                if($('#password').val()!=$('#L_repass').val()){
+                if($('#npassword').val()!=$('#cpass').val()){
                     return '两次密码不一致';
                 }
             }
@@ -54,7 +54,7 @@
         form.on('submit(edit)',function (data) {
             console.log(data);
             $.ajax({
-                url:'',
+                url:'/user/doPwsetting',
                 data:data.field,
                 dataType:'json',
                 type:'post',

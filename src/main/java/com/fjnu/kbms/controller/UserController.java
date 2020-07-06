@@ -9,12 +9,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     IUserService use;
+    @Autowired
+    HttpSession session;
 
     @RequestMapping("/doLogin")
     public Response login(String user_name,String password){
@@ -22,8 +26,18 @@ public class UserController {
         User loginUser=use.loginjudge(user_name,password);
         if(loginUser!=null){
             return Response.create(loginUser,"登录成功");
+        }else {
+            return Response.create("登录失败");
         }
-        return Response.create("登录失败");
+    }
+
+    @RequestMapping("/doacsetting")
+    public Response acset(Integer user_id, String email, String real_name, Byte sex, String birthday,
+                          String desc, String qq, String telephone, String website, String job){
+        int id=0;
+        session.setAttribute("user_id",id);
+        return Response.create("");
+
     }
 
     @RequestMapping("/doRegister")
@@ -32,7 +46,19 @@ public class UserController {
         return i;
     }
 
+    @RequestMapping("/doPwsetting")
+    public Response pwsetting(String password,String npassword){
+        int user_id=0;
+        session.setAttribute("user_id",user_id);
+        int i=use.editpw(user_id, password, npassword);
+        if(i!=0){
+            return Response.create(i,"修改成功");
+        }else{
+            return Response.create("修改失败");
 
+        }
+
+    }
 
     @RequestMapping("/toLogin")
     public ModelAndView toLogin(){

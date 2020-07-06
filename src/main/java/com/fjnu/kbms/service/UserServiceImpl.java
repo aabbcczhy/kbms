@@ -22,4 +22,14 @@ public class UserServiceImpl implements IUserService{
         user.setUserName(user_name);
         return adminMapper.insertSelective(user);
     }
+
+    @Override
+    public int editpw(Integer user_id, String password, String npassword) {
+        return adminMapper.updateById(user_id,password,npassword);
+    }
+
+    @Override
+    public int editac(Integer user_id, String email, String real_name, Byte sex, String birthday, String desc, String qq, String telephone, String website, String job) {
+        return adminMapper.updateByUserId( user_id,  email,  real_name,  sex,  birthday,  desc,  qq,  telephone,  website,  job);
+    }
 }

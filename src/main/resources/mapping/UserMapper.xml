@@ -150,6 +150,26 @@
       </if>
     </trim>
   </insert>
+
+  <update id="updateById">
+    update user
+    set password = #{npassword,jdbcType=VARCHAR}
+    where user_id = #{user_id,jdbcType=INTEGER} and password=#{password,jdbcType=VARCHAR}
+  </update>
+
+  <update id="updateByUserId">
+    update user
+    set  email = #{email,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      website = #{website,jdbcType=VARCHAR},
+      job = #{job,jdbcType=VARCHAR},
+  </update>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.fjnu.kbms.bean.User">
     update user
     <set>

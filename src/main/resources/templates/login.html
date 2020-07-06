@@ -53,9 +53,10 @@
                     if(data.code==0){
                         layer.msg(data.msg,function(){
                             //跳转至主页面
-                            location.href='/user/toRegister'
+                            location.href='/user/toRegister';
                         });
                     }else{
+                        location.href='/user/topwsetting';
                         layer.msg("登录失败");
                     }
                 }

@@ -13,13 +13,19 @@ public interface UserMapper {
 
     int insert(User record);
 
-    int insertSelective(User record);
+    int insertSelective(User record);//注册
 
     User selectByPrimaryKey(Integer userId);
 
-    User selectByLogin(@Param("user_name")String user_name,@Param("password")String password);
+    User selectByLogin(@Param("user_name")String user_name,@Param("password")String password);//登录
 
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    int updateById(@Param("user_id")Integer user_id,@Param("password")String password,@Param("npassword")String npassword);//改密码
+
+    int updateByUserId(@Param("user_id")Integer user_id,@Param("email")String email,@Param("real_name")String real_name,
+                       @Param("sex")Byte sex,@Param("birthday")String birthday,@Param("desc")String desc,@Param("qq")String qq,
+                       @Param("telephone")String telephone,@Param("website")String website,@Param("job")String job);//账户设置
 }
