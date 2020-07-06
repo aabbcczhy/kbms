@@ -9,4 +9,6 @@ public interface CommentService {
     List<Comment> selectByForeignKey(Integer commentAp);
 
     List<Comment> getCommentByApId(Integer apid);
+
+    void addComment(Comment comment);
 }

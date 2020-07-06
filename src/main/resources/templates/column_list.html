@@ -68,83 +68,51 @@
     <!--[if lte IE 8]>
     <script type="text/javascript" src="http://zhishiku.little-star.me/static/js/respond.js"></script>
     <![endif]-->
-    <style type="text/css">.fancybox-margin{margin-right:17px;}</style></head>
-<body><noscript unselectable="on" id="noscript">
+    <style type="text/css">.fancybox-margin{margin-right:17px;}</style>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+</head>
+<body>
+<noscript unselectable="on" id="noscript">
     <div class="aw-404 aw-404-wrap container">
         <img src="http://zhishiku.little-star.me/static/common/no-js.jpg">
         <p>你的浏览器禁用了JavaScript, 请开启后刷新浏览器获得更好的体验!</p>
     </div>
 </noscript>
-<div class="aw-top-menu-wrap">
-    <div class="container">
-        <!-- logo -->
-        <div class="aw-logo hidden-xs">
-            <a href="http://zhishiku.little-star.me/"></a>
+<header>
+    <ul class="layui-nav layui-bg-blue" style="text-align: center;">
+        <div class="layui-input-inline">
+            <input id="search_block" type="text" name="title" placeholder="搜索问题、话题或人..." autocomplete="off" class="layui-input">
         </div>
-        <!-- end logo -->
-        <!-- 搜索框 -->
-        <div class="aw-search-box  hidden-xs hidden-sm">
-            <form class="navbar-search" action="http://zhishiku.little-star.me/?/search/" id="global_search_form" method="post">
-                <label class="oldPwdTip aw-search-query-label" onclick="$(this).hide();$(&#39;#aw-search-query&#39;).focus();">搜索问题、话题或人...</label> 				<input class="form-control search-query" type="text" value="" autocomplete="off" name="q" id="aw-search-query" onfocus="hideOldPwdTip(&#39;aw-search-query&#39;);" onblur="toggleOldPwdTip(&#39;aw-search-query&#39;,this.value);">
-                <span title="搜索" id="global_search_btns" onclick="$(&#39;#global_search_form&#39;).submit();"><i class="icon icon-search"></i></span>
-                <div class="aw-dropdown">
-                    <div class="mod-body">
-                        <p class="title">输入关键字进行搜索</p>
-                        <ul class="aw-dropdown-list collapse"></ul>
-                        <p class="search"><span>搜索:</span><a onclick="$(&#39;#global_search_form&#39;).submit();"></a></p>
-                    </div>
-                    <div class="mod-footer">
-                        <a href="javascript:;" onclick="$(&#39;#header_publish&#39;).click();" class="pull-right btn btn-mini btn-success publish">发起问题</a>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <!-- end 搜索框 -->
-        <!-- 导航 -->
-        <div class="aw-top-nav navbar">
-            <div class="navbar-header">
-                <button class="navbar-toggle pull-left">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="http://zhishiku.little-star.me/?/explore/"><i class="icon icon-list"></i> 发现</a>
-                    </li>
-                    <li>
-                        <a href="http://zhishiku.little-star.me/?/column/" class="active"><i class="icon icon-column"></i> 专栏</a>
-                    </li>
-
-                    <li>
-                        <a style="font-weight:bold;">· · ·</a>
-                        <div class="dropdown-list pull-right">
-                            <ul id="extensions-nav-list">
-
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <!-- end 导航 -->
-        <!-- 用户栏 -->
-        <div class="aw-user-nav">
-            <!-- 登陆&注册栏 -->
-            <div class="aw-user-nav">
-                <!-- 登陆&注册栏 -->
-                <a class="login btn btn-normal btn-primary" href="http://zhishiku.little-star.me/?/account/login/">登录</a>
-                <a class="register btn btn-normal btn-success" href="http://zhishiku.little-star.me/?/account/register/">注册</a>						<!-- end 登陆&注册栏 -->
-            </div>
-            <!-- end 登陆&注册栏 -->
-        </div>
-        <!-- end 用户栏 -->
-        <!-- 发起 -->
-        <!-- end 发起 -->
-    </div>
-</div>
+        <li class="layui-nav-item">
+            <a href="/front_index"><i class="layui-icon layui-icon-search" style="font-size: 20px"></i> 发现</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="/column"><i class="layui-icon layui-icon-templeate-1" style="font-size: 20px"></i> 专栏</a>
+        </li>
+    </ul>
+    <ul th:if="${session.username!=null}" class="layui-nav layui-bg-blue layui-layout-right">
+        <li class="layui-nav-item">
+            <a href="javascript:;">
+                <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                <span th:text="${session.username}"></span>
+            </a>
+            <dl class="layui-nav-child">
+                <dd><a href="/publish">发布问题/文章</a></dd>
+                <dd><a href="/user/acSetting">基本资料</a></dd>
+                <dd><a href="/user/pwSetting">修改密码</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="/logout">退出</a></li>
+    </ul>
+    <ul th:if="${session.username==null}" class="layui-nav layui-bg-blue layui-layout-right">
+        <li class="layui-nav-item">
+            <a href="/login">登录</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="/register">注册</a>
+        </li>
+    </ul>
+</header>
 
 <script>
     $(function () {
@@ -167,7 +135,6 @@
     <div class="container">
         <div class="row">
             <div class="aw-content-wrap clearfix simpobox">
-
                 <div class="N-left clearfix">
                         <div class="N-mytitles">
                             <h2><img th:src="@{/column/np.png}">文章</h2>
@@ -175,6 +142,7 @@
                         <div class="aw-mod aw-explore-list">
                             <div class="mod-body">
                                 <div class="aw-common-list">
+                                    <p th:if="${articles.size() eq 0}">该专栏暂时没有文章</p>
                                     <div th:each="t:${articles}" class="aw-item article" data-topic-id="">
                                         <h4>
                                             <a href="http://zhishiku.little-star.me/?/article/3" th:text="${t.title}"> </a>
@@ -291,13 +259,15 @@
 
 <div class="aw-footer-wrap">
     <div class="aw-footer">
-        Copyright © 2020, All Rights Reserved
-
-        <span class="hidden-xs">Powered By </span>
-
+        Copyright ©2020  v1.0 All Rights Reserved
     </div>
 </div>
+<script src="/layui/layui.js"></script>
+<script>
+    layui.use('element', function() {
+        var element = layui.element;
 
-
-
-</body></html>
+    });
+</script>
+</body>
+</html>

@@ -247,11 +247,11 @@
   </select>
   <select id="getArticleAndProblemListAll" resultMap="BaseResultMap">
     select *
-    from ap limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+    from ap
   </select>
-  <select id="getArticleAndProblemListByType" resultMap="BaseResultMap">
+  <select id="getArticleAndProblemListByColumn" resultMap="BaseResultMap">
     select *
-    from ap where type_id=#{typeId,jdbcType=INTEGER}
+    from ap where column_id=#{columnId,jdbcType=INTEGER}
     limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
   </select>
 

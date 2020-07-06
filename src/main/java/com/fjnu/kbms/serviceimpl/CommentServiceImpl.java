@@ -23,6 +23,11 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public void addComment(Comment comment) {
+        commentMapper.insertSelective(comment);
+    }
+
+    @Override
     public List<Comment> selectByForeignKey(Integer commentAp) {
         return commentMapper.selectByForeignKey(commentAp);
     }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
@@ -26,8 +27,11 @@ import java.util.Map;
 @RestController
 public class LoginController {
 
-    @Autowired
-    UserService userService;
+    private final UserService userService;
+
+    public LoginController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/loginCheck")
     public Response login(String username, String password) throws BusinessException {
@@ -40,12 +44,23 @@ public class LoginController {
                 map.put("isAdmin",true);
                 return Response.create(map);
             }
+            User user = userService.getUserByName(username);
+            subject.getSession().setAttribute("userId",user.getUserId());
             subject.getSession().setAttribute("username", username);
         }catch (Exception e){
             throw new BusinessException(EmError.WRONG_USERNAME_OR_PASSWORD);
         }
         map.put("isAdmin", false);
         return Response.create(map);
+    }
+
+    @RequestMapping("/logout")
+    public RedirectView logout() {
+        SecurityUtils.getSubject().logout();
+        RedirectView redirectTarget = new RedirectView();
+        redirectTarget.setContextRelative(true);
+        redirectTarget.setUrl("/login");
+        return redirectTarget;
     }
 
     @PostMapping("/doRegister")

@@ -21,9 +21,7 @@ public class ColumnController {
 
     @RequestMapping("/getAllColumns")
     public Response getAllColumns(){
-        Response response = null;
         List<Column> list = columnService.getAllColumns();
-        response = Response.create(list);
-        return response;
+        return Response.create(list);
     }
 }

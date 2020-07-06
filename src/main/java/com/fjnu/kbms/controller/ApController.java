@@ -8,6 +8,8 @@ import com.fjnu.kbms.service.*;
 import com.fjnu.kbms.vo.ArticleListVO;
 import com.fjnu.kbms.vo.ProblemListVO;
 import com.fjnu.kbms.vo.TableVO;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +42,7 @@ public class ApController {
     }
 
     @RequestMapping("/problem_list")
+    @RequiresRoles("1")
     public ModelAndView toProblemList(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("problem_manage");
@@ -47,6 +50,7 @@ public class ApController {
     }
     @RequestMapping("/getProblems")
     @ResponseBody
+    @RequiresRoles("1")
     public TableVO getProblems(Integer page, Integer limit, Integer apid, Integer typeId, String publishTime,
                                Byte status){
         if(status!=null && status == 4){
@@ -65,9 +69,8 @@ public class ApController {
         return new TableVO(problemListVOList.size(),problemListVOList);
     }
 
-
-
     @RequestMapping("/toDetails")
+    @RequiresRoles("1")
     public ModelAndView toDetails(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("problem_details");
@@ -75,6 +78,7 @@ public class ApController {
     }
 
     @RequestMapping("/toAudit")
+    @RequiresRoles("1")
     public ModelAndView toUpdate(Integer apid){
         ModelAndView modelAndView = new ModelAndView();
         if(apid != null){
@@ -86,6 +90,7 @@ public class ApController {
     }
 
     @RequestMapping("/delete")
+    @RequiresRoles("1")
     public Response delete(Integer apid) throws BusinessException{
         if(apService.deleteByPrimaryKey(apid)==1) {
             return Response.create("null");
@@ -93,7 +98,9 @@ public class ApController {
             throw new BusinessException(EmError.UNKNOWN_ERROR);
         }
     }
+
     @RequestMapping("/audit")
+    @RequiresRoles("1")
     public String audit(Integer apid,Byte status){
         Ap ap = new Ap();
         ap.setApid(apid);
@@ -103,6 +110,7 @@ public class ApController {
     }
 
     @RequestMapping("/article_list")
+    @RequiresRoles("1")
     public ModelAndView toArticleList(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("article_manage");
@@ -110,6 +118,7 @@ public class ApController {
     }
 
     @RequestMapping("/getArticles")
+    @RequiresRoles("1")
     @ResponseBody
     public TableVO getArticles(Integer page, Integer limit, Integer apid, String title,Integer typeId, Integer columnId,
                                String publishTime, Byte status){
@@ -131,6 +140,7 @@ public class ApController {
     }
 
     @RequestMapping("/toArticleDetails")
+    @RequiresRoles("1")
     public ModelAndView toArticleDetails(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("article_details");
@@ -138,25 +148,12 @@ public class ApController {
     }
 
     @PostMapping("/addArticle")
+    @RequiresRoles("0")
     public Response addArticle(Ap ap){
-        // TODO 此处应获取登录用户的id作为作者id,这里还没对接先写死为1
-        ap.setAuthorId(1);
+        Integer userId = (Integer) SecurityUtils.getSubject().getSession().getAttribute("userId");
+        ap.setAuthorId(userId);
         apService.addArticle(ap);
         return Response.create("添加成功");
     }
-
-    /**
-     * @Method
-     * @Author QuanJiaXing
-     * @Version  1.0
-     * @Description
-     * @param null
-     * @Return
-     * @Exception
-     * @Date 2020/7/5 12:24
-     */
-
-
-
 
 }

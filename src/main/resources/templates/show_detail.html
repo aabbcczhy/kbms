@@ -16,30 +16,32 @@
                 <input id="search_block" type="text" name="title" placeholder="搜索问题、话题或人..." autocomplete="off" class="layui-input">
             </div>
             <li class="layui-nav-item">
-                <a href=""><i class="layui-icon layui-icon-search" style="font-size: 20px"></i> 发现</a>
+                <a href="/front_index"><i class="layui-icon layui-icon-search" style="font-size: 20px"></i> 发现</a>
             </li>
             <li class="layui-nav-item">
-                <a href=""><i class="layui-icon layui-icon-templeate-1" style="font-size: 20px"></i> 专栏</a>
+                <a href="/column"><i class="layui-icon layui-icon-templeate-1" style="font-size: 20px"></i> 专栏</a>
             </li>
         </ul>
-        <!-- <ul class="layui-nav layui-bg-blue layui-layout-right">
+        <ul th:if="${session.username!=null}" class="layui-nav layui-bg-blue layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    <span th:text="${session.username}"></span>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">安全设置</a></dd>
+                    <dd><a href="/publish">发布问题/文章</a></dd>
+                    <dd><a href="/user/acSetting">基本资料</a></dd>
+                    <dd><a href="/user/pwSetting">修改密码</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="">退出</a></li>
-        </ul> -->
-        <ul class="layui-nav layui-bg-blue layui-layout-right">
+            <li class="layui-nav-item"><a href="/logout">退出</a></li>
+        </ul>
+        <ul th:if="${session.username==null}" class="layui-nav layui-bg-blue layui-layout-right">
             <li class="layui-nav-item">
-                <a href="javascript:;">登录</a>
+                <a href="/login">登录</a>
             </li>
             <li class="layui-nav-item">
-                <a href="javascript:;">注册</a>
+                <a href="/register">注册</a>
             </li>
         </ul>
     </header>
@@ -62,7 +64,7 @@
                         <div th:each="commentVO:${apDetail.commentVOList}" class="comment-item">
                             <div class="mod-head">
                                 <a class="user-img">
-                                    <img th:src="${commentVO.commentUserHeadPicture}" th:alt="${commentVO.commentUserName}">
+                                    <img src="http://t.cn/RCzsdCq" th:alt="${commentVO.commentUserName}">
                                 </a>
                                 <p><a th:text="${commentVO.commentUserName}"></a></p>
                             </div>
@@ -77,14 +79,15 @@
                         </div>
                     </div>
                     <div class="layui-card-body comment-area">
-                        <p>要回复文章请先<a href="javascript:;">登录</a>或<a href="javascript:;">注册</a></p>
-                        <!-- <form class="layui-form" action="#">
+                        <p th:if="${session.username==null}">要回复文章请先<a href="/login">登录</a>或<a href="/register">注册</a></p>
+                        <form th:if="${session.username!=null}" class="layui-form" action="#">
+                            <input type="hidden" name="commentAp" th:value="${apDetail.apid}">
                             <div class="layui-form-item layui-form-text reply-item">
                                 <div class="layui-input-inline">
-                                    <a href="http://zhishiku.little-star.me/?/people/" class="aw-user-name"><img alt="aabbcczhy" src="http://zhishiku.little-star.me/static/common/avatar-mid-img.png"></a>
+                                    <a href="http://zhishiku.little-star.me/?/people/" class="aw-user-name"><img th:alt="${session.username}" src="http://t.cn/RCzsdCq"></a>
                                 </div>
                                 <div class="layui-input-block reply-content">
-                                    <textarea name="comment" placeholder="请输入内容" class="layui-textarea"></textarea>
+                                    <textarea name="commentContent" placeholder="请输入内容" class="layui-textarea"></textarea>
                                 </div>
                             </div>
                             <div class="layui-form-item">
@@ -92,7 +95,7 @@
                                     <button class="layui-btn layui-btn-normal pull-right" lay-submit lay-filter="formDemo">回复</button>
                                 </div>
                             </div>
-                        </form> -->
+                        </form>
                     </div>
                 </div>
             </div>
@@ -103,7 +106,7 @@
                 <div class="mod-body">
                     <dl>
                         <dt class="pull-left">
-                            <a><img th:alt="${apDetail.authorName}" th:src="${apDetail.authorPicture}"></a>
+                            <a><img th:alt="${apDetail.authorName}" src="http://t.cn/RCzsdCq"></a>
                             </dt>
                         <dd class="pull-left userinfo">
                             <a class="aw-user-name" th:text="${apDetail.authorName}"></a>
@@ -115,13 +118,28 @@
         </div>
     </div>
     <div class="layui-footer">
-        <p>© 2020 <a href="/">layui.com</a> MIT license</p>
+        <p>Copyright ©2020  v1.0 All Rights Reserved</p>
     </div>
     <script src="/layui/layui.js"></script>
     <script>
-        layui.use('element', function() {
+        layui.use(['element','form','jquery'], function() {
             var element = layui.element;
-
+            var form = layui.form;
+            var $ = layui.jquery;
+            form.on("submit(formDemo)",function (data) {
+                $.ajax({
+                   type: "POST",
+                   url: "/comment/doComment",
+                   data: data.field,
+                   dataType: "json",
+                   success: function (res) {
+                       if(res.status === "success"){
+                           location.replace(location.href);
+                       }
+                   }
+                });
+                return false;
+            });
         });
     </script>
 </body>

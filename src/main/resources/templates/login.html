@@ -31,7 +31,7 @@
             <button lay-submit lay-filter="login" class="layui-btn">登录</button>
         </div>
         <hr/>
-        <p><a href="/register" class="fl">立即注册</a><a href="javascript:;" class="fr">游客访问</a></p>
+        <p><a href="/register" class="fl">立即注册</a><a href="/front_index" class="fr">游客访问</a></p>
     </form>
 </div>
 
@@ -51,10 +51,10 @@
                     if(res.status === "success"){
                         if(res.data.isAdmin){
                             // 跳转至后台管理页面
-                            console.log("后台页面跳转...")
+                            location.href = "/index"
                         }else{
                             // 跳转至前台主页面
-                            console.log("前台页面跳转...")
+                            location.href = "/front_index";
                         }
                     }else{
                         layer.msg("用户名或密码输入错误");

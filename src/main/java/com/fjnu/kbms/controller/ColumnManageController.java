@@ -6,6 +6,7 @@ import com.fjnu.kbms.response.Response;
 import com.fjnu.kbms.serviceimpl.ColumnManageServiceImpl;
 import com.fjnu.kbms.vo.ColumnListVO;
 import com.fjnu.kbms.vo.TableVO;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,14 +16,18 @@ import java.util.Vector;
 
 @RestController
 @RequestMapping("/manager")
+@RequiresRoles("1")
 public class ColumnManageController {
 
+    private final ColumnManageServiceImpl columnManageService;
+
     @Autowired
-    ColumnManageServiceImpl columnManageService;
+    public ColumnManageController(ColumnManageServiceImpl columnManageService) {
+        this.columnManageService = columnManageService;
+    }
 
     @RequestMapping("/initable")
-    public TableVO InitTable(){
-        System.out.println("初始化专栏列表");
+    public TableVO initTable(){
         Vector<ColumnListVO> columns=columnManageService.getAllColumn();
         return new TableVO(columns.size(),columns);
     }
@@ -34,14 +39,14 @@ public class ColumnManageController {
         return mav;
     }
     @RequestMapping("/ColumnManager/AddView")
-    public ModelAndView ColumnAddView(){
+    public ModelAndView columnAddView(){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("Column_Add");
         return mav;
     }
 
     @RequestMapping("/ColumnManager/ColumnAdd")
-    public Response ColumnAdd(Column column){
+    public Response columnAdd(Column column){
         if(columnManageService.columnAdd(column)==1){
             return Response.create(null,"200");
         }else{
@@ -49,18 +54,14 @@ public class ColumnManageController {
         }
     }
 
-
-
     @RequestMapping("/ColumnManager/ColumnEdit")
-    public Response ColumnEdit(Column column){
+    public Response columnEdit(Column column){
         System.out.println("columnid="+column.getColumnId()+column.getColumnName()+column.getColumnDesc());
         if(columnManageService.columnEdit(column)==1){
-
             return Response.create(null,"200");
         }else{
             return Response.create(null,"500");
         }
-        // return Response.create();
     }
 
     @RequestMapping("/ColumnManager/ColumnSearch")

@@ -25,13 +25,15 @@ public class ShiroConfig {
         //排除的页面
         filterChainDefinitionMap.put("/static/**", "anon");
         //anon表示可以匿名访问，authc表示需要认证通过才可以访问
-//        filterChainDefinitionMap.put("/login/**", "anon");
-//        filterChainDefinitionMap.put("/error/**", "anon");
         filterChainDefinitionMap.put("/user/**", "authc");
+        filterChainDefinitionMap.put("/content/**", "authc");
+        filterChainDefinitionMap.put("/manager/**", "authc");
+        filterChainDefinitionMap.put("/comment/**", "authc");
+        filterChainDefinitionMap.put("/index", "authc");
+        filterChainDefinitionMap.put("/publish", "authc");
+        filterChainDefinitionMap.put("/welcome", "authc");
         //如果拦截到的用户未登陆则自动跳转到登陆界面
         shiroFilterFactoryBean.setLoginUrl("/login");
-        //登陆成功后要跳转的链接
-        shiroFilterFactoryBean.setSuccessUrl("/index");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

@@ -22,10 +22,8 @@ public class TypeController {
 
     @RequestMapping("/getAllTypes")
     public Response getAllTypes(){
-        Response response = null;
         List<Type> list = typeService.getAllTypes();
-        response = Response.create(list);
-        return response;
+        return Response.create(list);
     }
 
 }

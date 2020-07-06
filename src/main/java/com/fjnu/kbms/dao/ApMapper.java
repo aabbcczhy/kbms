@@ -53,7 +53,7 @@ public interface ApMapper {
      * @Exception 根据typeid查询
      * @Date 2020/7/6 16:01
      */
-    List<Ap> getArticleAndProblemListByType(@Param("offset") Integer offset, @Param("limit") Integer limit,@Param("typeId") Integer typeId);
+    List<Ap> getArticleAndProblemListByColumn(@Param("offset") Integer offset, @Param("limit") Integer limit,@Param("columnId") Integer columnId);
 
     int updateScan(Integer apid);
 }

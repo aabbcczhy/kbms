@@ -4,6 +4,7 @@ import com.fjnu.kbms.bean.Type;
 import com.fjnu.kbms.response.Response;
 import com.fjnu.kbms.serviceimpl.TypeManageServiceImpl;
 import com.fjnu.kbms.vo.TableVO;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,14 +22,18 @@ import java.util.Vector;
 
 @RestController
 @RequestMapping("/manager")
+@RequiresRoles("1")
 public class TypeManageController {
 
+    private final TypeManageServiceImpl typeManageService;
+
     @Autowired
-    TypeManageServiceImpl typeManageService;
+    public TypeManageController(TypeManageServiceImpl typeManageService) {
+        this.typeManageService = typeManageService;
+    }
 
     @RequestMapping("/initypeList")
-    public TableVO InitTable(){
-        System.out.println("初始化分类列表");
+    public TableVO initTable(){
         Vector<Type> types=typeManageService.getAllType();
         return new TableVO(types.size(),types);
     }
@@ -40,14 +45,14 @@ public class TypeManageController {
         return mav;
     }
     @RequestMapping("/TypeManager/AddView")
-    public ModelAndView TypeAddView(){
+    public ModelAndView typeAddView(){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("Type_Add");
         return mav;
     }
 
     @RequestMapping("/TypeManager/TypeAdd")
-    public Response TypeAdd(Type type){
+    public Response typeAdd(Type type){
         if(typeManageService.typeAdd(type)==1){
             return Response.create(null,"200");
         }else{
@@ -55,27 +60,23 @@ public class TypeManageController {
         }
     }
 
-
-
     @RequestMapping("/TypeManager/TypeEdit")
-    public Response TypeEdit(Type type){
+    public Response typeEdit(Type type){
         System.out.println(type.getTypeId()+type.getTypeTitle()+type.getTypeWeight());
         if(typeManageService.typeEdit(type)==1){
-
             return Response.create(null,"200");
         }else{
             return Response.create(null,"500");
         }
-        // return Response.create();
     }
 
     @RequestMapping("/TypeManager/TypeSearch")
-    public Type TypeSearch(int typeId){
+    public Type typeSearch(int typeId){
         return typeManageService.typeSearch(typeId);
     }
 
     @RequestMapping("/TypeManager/EditView")
-    public ModelAndView TypeEditView(){
+    public ModelAndView typeEditView(){
         ModelAndView mav = new ModelAndView();
         mav.setViewName("Type_Edit");
         return mav;

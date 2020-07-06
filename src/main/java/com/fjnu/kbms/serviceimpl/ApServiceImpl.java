@@ -48,8 +48,8 @@ public class ApServiceImpl implements ApService {
     }
 
     @Override
-    public java.util.List<com.fjnu.kbms.bean.Ap> getArticleAndProblemListByType(Integer page, Integer limit, Integer type) {
-        return apMapper.getArticleAndProblemListByType(page, limit, type);
+    public java.util.List<com.fjnu.kbms.bean.Ap> getArticleAndProblemListByColumn(Integer page, Integer limit, Integer columnId) {
+        return apMapper.getArticleAndProblemListByColumn(page, limit, columnId);
     }
 
     @Override

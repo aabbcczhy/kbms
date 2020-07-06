@@ -23,20 +23,22 @@
             <input id="search_block" type="text" name="title" placeholder="搜索问题、话题或人..." autocomplete="off" class="layui-input">
         </div>
         <li class="layui-nav-item">
-            <a href=""><i class="layui-icon layui-icon-search" style="font-size: 20px"></i> 发现</a>
+            <a href="/front_index"><i class="layui-icon layui-icon-search" style="font-size: 20px"></i> 发现</a>
         </li>
         <li class="layui-nav-item">
-            <a href=""><i class="layui-icon layui-icon-templeate-1" style="font-size: 20px"></i> 专栏</a>
+            <a href="/column"><i class="layui-icon layui-icon-templeate-1" style="font-size: 20px"></i> 专栏</a>
         </li>
     </ul>
-    <ul class="layui-nav layui-bg-blue layui-layout-right">
+    <ul th:if="${session.username!=null}" class="layui-nav layui-bg-blue layui-layout-right">
         <li class="layui-nav-item">
             <a href="javascript:;">
-                <img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
+                <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                <span th:text="${session.username}"></span>
             </a>
             <dl class="layui-nav-child">
-                <dd><a href="/acSetting">基本资料</a></dd>
-                <dd><a href="/pwSetting">修改密码</a></dd>
+                <dd><a href="/publish">发布问题/文章</a></dd>
+                <dd><a href="/user/acSetting">基本资料</a></dd>
+                <dd><a href="/user/pwSetting">修改密码</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item"><a href="/logout">退出</a></li>

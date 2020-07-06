@@ -43,7 +43,7 @@
         -->
       </div>
       <xblock>
-        <button class="layui-btn" onclick="x_admin_show('添加用户','/manager/ColumnManager/AddView',700,600)"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加专栏','/manager/ColumnManager/AddView',700,600)"><i class="layui-icon"></i>添加</button>
       </xblock>
 
       <table class="layui-table"  id="column" lay-filter="test">
@@ -87,10 +87,8 @@
         });
           table.on('tool(test)', function(obj){
               var data = obj.data;
-             // console.log(data)
               if(obj.event === 'del'){
                   layer.confirm('真的删除行么', function(index){
-
                       obj.del();
                       layer.close(index);
                   });

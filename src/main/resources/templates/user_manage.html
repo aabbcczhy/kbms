@@ -186,14 +186,12 @@
                             body.find("#job").val(
                                 data.job);
                             if(data.role===1){
-                                body.find("#role").val(
-                                    "管理员");
+                                body.find("#role").val("管理员");
                             }else {
-                                body.find("#role").val(
-                                    "普通会员");
+                                body.find("#role").val("普通会员");
                             }
 
-                            if(data.status==1){
+                            if(data.status===1){
                                 body.find("#status").val("正常用户");
                             }else{
                                 body.find("#status").val("已删除");
@@ -204,17 +202,18 @@
                     break;
                 case 'reset':
                     layer.confirm('真的要重置密码么', function(index){
-                        layer.close(index);
                         $.ajax({
                             type: "POST",
                             url: "/user/reset",
                             data:{
-                                userId : data.userId
+                                "userId": data.userId,
+                                "userName": data.userName
                             },
                             success: function () {
                                 layer.msg('重置成功！', {icon: 6, time: 1500});
                             }
                         });
+                        layer.close(index);
                     });
                     break;
                 case 'del':
