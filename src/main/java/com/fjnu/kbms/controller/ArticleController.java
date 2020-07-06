@@ -24,7 +24,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/content")
-public class ApController {
+public class ArticleController {
     private final ApService apService;
     private final CommentService commentService;
     private final TypeService typeService;
@@ -32,7 +32,7 @@ public class ApController {
     private final ColumnService columnService;
 
     @Autowired
-    public ApController(ApService apService, CommentService commentService, TypeService typeService,
+    public ArticleController(ApService apService, CommentService commentService, TypeService typeService,
                         UserService userService, ColumnService columnService) {
         this.apService = apService;
         this.commentService = commentService;
