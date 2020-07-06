@@ -5,10 +5,14 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userId);
+
+    int delete(Integer userId);
 
     int insert(User record);
 
@@ -27,4 +31,8 @@ public interface UserMapper {
     int updatePassword(@Param("userName") String userName,
                        @Param("password") String password,
                        @Param("newPassword") String newPassword);
+
+    List<User> getUsersList(@Param("offset") Integer offset, @Param("limit") Integer limit,
+                              @Param("userId") Integer userId, @Param("userName") String userName,
+                              @Param("status") Byte status);
 }

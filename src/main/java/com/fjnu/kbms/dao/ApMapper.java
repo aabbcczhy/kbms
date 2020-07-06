@@ -12,6 +12,8 @@ import java.util.List;
 public interface ApMapper {
     int deleteByPrimaryKey(Integer apid);
 
+    int delete(Integer apid);
+
     int insert(Ap record);
 
     int insertSelective(Ap record);
@@ -26,13 +28,11 @@ public interface ApMapper {
 
     List<Ap> getProblemList(@Param("offset") Integer offset, @Param("limit") Integer limit,
                             @Param("apid") Integer apid, @Param("typeId") Integer typeId,
-                            @Param("publishTime") String publishTime, @Param("status") Byte status,
-                            @Param("isArticle") Byte isArticle);
+                            @Param("publishTime") String publishTime, @Param("status") Byte status);
 
     List<Ap> getArticleList(@Param("offset") Integer offset, @Param("limit") Integer limit,
                             @Param("apid") Integer apid, @Param("title")String title,@Param("typeId") Integer typeId,
-                            @Param("columnId") Integer columnId, @Param("publishTime") String publishTime, @Param("status") Byte status,
-                            @Param("isArticle") Byte isArticle);
+                            @Param("columnId") Integer columnId, @Param("publishTime") String publishTime, @Param("status") Byte status);
     /**
      * @Method
      * @Author QuanJiaXing

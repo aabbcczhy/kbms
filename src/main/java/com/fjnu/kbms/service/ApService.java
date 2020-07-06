@@ -8,13 +8,14 @@ import java.util.List;
 public interface ApService {
 
     List<Ap> getProblemList(Integer page, Integer limit, Integer apid, Integer typeId,
-                            String publishTime, Byte status,Byte isArticle);
+                            String publishTime, Byte status);
 
     List<Ap> getArticlesList(Integer page, Integer limit, Integer apid, String title,
                              Integer typeId, Integer columnId, String publishTime,
-                             Byte status,Byte isArticle);
+                             Byte status);
 
     int deleteByPrimaryKey(Integer apid);
+
 
     int updateByPrimaryKeySelective(Ap record);
 
@@ -47,6 +48,8 @@ public interface ApService {
      * @Date 2020/7/6 16:01
      */
     List<Ap> getArticleAndProblemListByType(Integer page, Integer limit,Integer type);
+
+    Ap getArticleById(Integer apid);
 
     Ap getApById(Integer apid);
 

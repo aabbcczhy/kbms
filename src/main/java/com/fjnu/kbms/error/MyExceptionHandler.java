@@ -29,8 +29,7 @@ public class MyExceptionHandler {
 		}else {
 			responseData.put("errorCode", EmError.UNKNOWN_ERROR.getErrorCode());
 			responseData.put("errorMessage", EmError.UNKNOWN_ERROR.getErrorMessage());
-			//Logger.logMsg(Logger.ERROR,e.getMessage());
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
 		}
 		commonReturnType.setData(responseData);
 		return commonReturnType;

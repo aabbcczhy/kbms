@@ -17,19 +17,19 @@ public class ApServiceImpl implements ApService {
 
     @Override
     public List<Ap> getProblemList(Integer page,Integer limit,Integer apid,Integer typeId,
-                                   String publishTime,Byte status,Byte isArticle) {
-        return apMapper.getProblemList((page-1)*limit,limit,apid,typeId,publishTime,status,isArticle);
+                                   String publishTime,Byte status) {
+        return apMapper.getProblemList((page-1)*limit,limit,apid,typeId,publishTime,status);
     }
 
     @Override
-    public List<Ap> getArticlesList(Integer page, Integer limit, Integer apid, String title, Integer typeId, Integer columnId, String publishTime, Byte status, Byte isArticle) {
-        return apMapper.getArticleList((page-1)*limit,limit,apid,title,typeId,columnId,publishTime,status,isArticle);
+    public List<Ap> getArticlesList(Integer page, Integer limit, Integer apid, String title, Integer typeId, Integer columnId, String publishTime, Byte status) {
+        return apMapper.getArticleList((page-1)*limit,limit,apid,title,typeId,columnId,publishTime,status);
     }
 
 
     @Override
     public int deleteByPrimaryKey(Integer apid) {
-        return apMapper.deleteByPrimaryKey(apid);
+        return apMapper.delete(apid);
     }
 
     @Override
@@ -60,5 +60,10 @@ public class ApServiceImpl implements ApService {
     @Override
     public void updateScan(Integer apid) {
         apMapper.updateScan(apid);
+    }
+
+    @Override
+    public Ap getArticleById(Integer apid) {
+        return apMapper.selectByPrimaryKey(apid);
     }
 }

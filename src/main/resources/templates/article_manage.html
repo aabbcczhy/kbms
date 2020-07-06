@@ -87,7 +87,7 @@
     <table id="demo" class="layui-table" lay-filter="test"></table>
 </div>
 <script type="text/html" id="picture_row">
-    {{#  if(d.headpic == ''){ }}
+    {{#  if(d.picture == ''){ }}
     <img src="/images/head.jpg" width="50" height="50" alt="头像" />
     {{#  } else { }}
     <img src="/image/{{d.picture}}" width="50" height="50" alt="头像" />
@@ -157,7 +157,7 @@
                     ,{field: 'typeName', align:'center',title: '分类'}
                     ,{field: 'columnName', align:'center',title: '专栏'}
                     ,{field: 'publishTime', align:'center',title: '发布时间'}
-                    ,{field: 'right', align:'center',title: '操作',toolbar:'#barDemo'}
+                    ,{field: 'right', width:200,align:'center',title: '操作',toolbar:'#barDemo'}
                 ]
             ]
         });
@@ -181,8 +181,7 @@
                             typeId: typeTitle.val(),
                             columnId:columnName.val(),
                             publishTime: publishTime.val(),
-                            status: status.val(),
-                            isArticle:1
+                            status: status.val()
                         }
                     });
                 }
@@ -201,7 +200,7 @@
                     layer.open({
                         type : 2,
                         title : '查看文章内容',
-                        area : [ '450px', '600px' ],
+                        area : [ '600px', '600px' ],
                         offset : '150px',
                         btn : [ '确认', '取消' ],
                         shadeClose : true,
@@ -226,42 +225,32 @@
                                 data.columnName);
                             body.find("#authorName").val(
                                 data.authorName);
-                            body.find("#content").val(
-                                data.content);
-
-                            if(data.status==1){
+                            body.find("#content").append(data.content);
+                            if(data.status===1){
                                 body.find("#status").val("审核通过");
-                            }else if(data.status==2) {
+                            }else if(data.status===2) {
                                 body.find("#status").val("未通过");
-                            }else if(data.status==3){
+                            }else if(data.status===3){
                                 body.find("#status").val("已删除");
                             }else{
                                 body.find("#status").val("未审核");
                             }
                             layui.form.render();
-                        },
+                        }
                     });
                     break;
                 case 'audit':
                     layer.open({
                         type : 2,
                         title : '审核文章内容',
-                        area : [ '250px', '250px' ],
+                        area : [ '400px', '400px' ],
                         offset : '150px',
                         btn : [ '确认', '取消' ],
                         shadeClose : true,
                         resize : false,
                         shade : 0.4,
                         maxmin : true,
-                        content : 'toAudit',
-                        success : function(layero, index) {
-                            var body = layer.getChildFrame('body',
-                                index);
-                            body.find('input[name=status][value=1]').attr("checked",data.status === 1);
-                            body.find('input[name=status][value=2]').attr("checked",data.status === 2);
-                            body.find('input[name=status][value=0]').attr("checked",data.status === 0);
-                            layui.form.render();
-                        },
+                        content : 'toAudit?apid='+data.apid,
                         yes : function(index, layero) {
                             var body = layer.getChildFrame('body',index);
                             $.ajax({
@@ -270,10 +259,13 @@
                                 data:body.find("#problem_audit").serialize(),
                                 success:function(){
                                     // console.log("success");
-                                    layer.alert("修改成功", {icon: 6},function () {
-                                        var index = parent.layer.getFrameIndex(window.name);
-                                        parent.layer.close(index);
-                                        parent.location.replace(parent.location.href);
+                                    layer.alert("修改成功", {icon: 6},function (index) {
+                                        layer.close(index);
+                                        table.reload('articleReload', {
+                                            page: {
+                                                curr: 1 //重新从第 1 页开始
+                                            }
+                                        });
                                     });
                                 },
                                 error:function(){

@@ -186,6 +186,12 @@
     where apid = #{apid,jdbcType=INTEGER}
   </update>
 
+  <update id="delete" parameterType="com.fjnu.kbms.bean.Ap">
+    update ap
+    set status = 3
+    where apid = #{apid,jdbcType=INTEGER}
+  </update>
+
 <!--  <select id="getProblemList" resultMap="BaseResultMap">-->
 
 <!--  	select * from ap limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}-->
@@ -194,54 +200,48 @@
 
   <select id="getProblemList" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
+    *
     from ap
     where
-    1 = 1
+    is_article = 0
     <if test="apid != null">
-      and apid like "%"#{apid,jdbcType=INTEGER}"%"
+      and apid = #{apid,jdbcType=INTEGER}
     </if>
     <if test="typeId != null">
-      and type_id like  "%"#{typeId,jdbcType=INTEGER}"%"
+      and type_id =  #{typeId,jdbcType=INTEGER}
     </if>
-    <if test="publishTime != null">
-      and publish_time = #{publishTime,jdbcType=VARCHAR}
+    <if test="publishTime != null and publishTime!= ''">
+      and publish_time like "%"#{publishTime,jdbcType=VARCHAR}"%"
     </if>
-    <if test="status != null or status != 4">
+    <if test="status != null">
       and status = #{status,jdbcType=TINYINT}
-    </if>
-    <if test="isArticle != null">
-      and is_article = #{isArticle,jdbcType=TINYINT}
     </if>
     limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
   </select>
 
   <select id="getArticleList" resultMap="BaseResultMap">
     select
-    <include refid="Base_Column_List" />
+    *
     from ap
     where
-    1 = 1
+      is_article = 1
     <if test="apid != null">
-      and apid like "%"#{apid,jdbcType=INTEGER}"%"
+      and apid = #{apid,jdbcType=INTEGER}
     </if>
-    <if test="title != null">
+    <if test="title != null and title!= ''">
       and title like  "%"#{title,jdbcType=VARCHAR}"%"
     </if>
     <if test="typeId != null">
-      and type_id like  "%"#{typeId,jdbcType=INTEGER}"%"
+      and type_id =  #{typeId,jdbcType=INTEGER}
     </if>
     <if test="columnId != null">
-      and column_id like  "%"#{columnId,jdbcType=INTEGER}"%"
+      and column_id =  #{columnId,jdbcType=INTEGER}
     </if>
-    <if test="publishTime != null">
-      and publish_time = #{publishTime,jdbcType=VARCHAR}
+    <if test="publishTime != null and publishTime!= ''">
+      and publish_time like "%"#{publishTime,jdbcType=VARCHAR}"%"
     </if>
-    <if test="status != null or status != 4">
+    <if test="status != null">
       and status = #{status,jdbcType=TINYINT}
-    </if>
-    <if test="isArticle != null">
-      and is_article = #{isArticle,jdbcType=TINYINT}
     </if>
     limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
   </select>
@@ -254,4 +254,5 @@
     from ap where type_id=#{typeId,jdbcType=INTEGER}
     limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
   </select>
+
 </mapper>
