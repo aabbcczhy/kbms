@@ -27,5 +27,15 @@ public interface ApService {
      * @Date 2020/7/6 1:48
      */
     List<Ap> getArticleAndProblemListAll(Integer page, Integer limit);
-
+/**
+ * @Method
+ * @Author QuanJiaXing
+ * @Version  1.0
+ * @Description根据typeid查询
+ * @param null
+ * @Return
+ * @Exception
+ * @Date 2020/7/6 16:01
+ */
+    List<Ap> getArticleAndProblemListByType(Integer page, Integer limit,Integer type);
 }
