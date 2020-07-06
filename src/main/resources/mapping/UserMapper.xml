@@ -24,10 +24,29 @@
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
-    <include refid="Base_Column_List" />
+    *
     from user
     where user_id = #{userId,jdbcType=INTEGER}
   </select>
+
+
+  <select id="getUsersList" resultMap="BaseResultMap">
+    select *
+    from user
+    where
+    1 = 1
+    <if test="userId != null">
+      and user_id = #{userId,jdbcType=INTEGER}
+    </if>
+    <if test="userName != null and userName!= ''">
+      and user_name like "%"#{userName,jdbcType=VARCHAR}"%"
+    </if>
+    <if test="status != null">
+      and status = #{status,jdbcType=TINYINT}
+    </if>
+    limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user
     where user_id = #{userId,jdbcType=INTEGER}
@@ -205,6 +224,12 @@
       job = #{job,jdbcType=VARCHAR},
       role = #{role,jdbcType=INTEGER},
       status = #{status,jdbcType=TINYINT}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+
+  <update id="delete" parameterType="com.fjnu.kbms.bean.User">
+    update user
+    set status = 0
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

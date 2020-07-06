@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息详情页面</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet"  th:href="@{/css/font.css}">
+    <link rel="stylesheet"  th:href="@{/css/xadmin.css}">
+    <script type="text/javascript" th:src="@{/plugins/jquery/jquery.min.js}" ></script>
+    <script  th:src="@{/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+</head>
+<div class="x-body layui-anim layui-anim-up">
+    <form class="layui-form" action="" id="user_details">
+        <div class="layui-form-item">
+            <label class="layui-form-label">
+                头像
+            </label>
+            <div class="layui-input-inline">
+                <img id="headPicture" src="/images/head.jpg" width="50" height="50" alt="头像" />
+                <input type="hidden" id="fileName" name="headPicture">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">ID：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="userId" id="userId" required  autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">用户名：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="userName"id="userName" required  lay-verify="required" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="email"id="email" required  lay-verify="required" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">真名：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="realName"id="realName" required  lay-verify="required" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">性别：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="sex"id="sex" required  lay-verify="required" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">生日：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="birthday"id="birthday" required  lay-verify="required" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">描述：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="desc"id="desc" required  lay-verify="required" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">qq：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="qq"id="qq" required  lay-verify="required" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="telephone"id="telephone" required  lay-verify="required" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">网址：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="website"id="website" required  lay-verify="required" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">职业：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="job"id="job" required  lay-verify="required" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">角色：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="role"id="role" required  lay-verify="required" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态：</label>
+            <div class="layui-input-inline">
+                <input type="text" name="status"id="status" required  lay-verify="required" autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+
+    </form>
+</div>
+<script src="../layui/layui.js"></script>
+<script>
+    layui.use(['form','layer'], function() {
+        $ = layui.jquery;
+        var form = layui.form
+            , layer = layui.layer;
+    });
+</script>
+</body>
+</html>

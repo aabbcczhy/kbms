@@ -15,7 +15,7 @@ import java.util.Map;
 @ControllerAdvice
 public class MyExceptionHandler {
 	
-	@ExceptionHandler(Exception.class)
+	@ExceptionHandler(BusinessException.class)
 	@ResponseStatus(HttpStatus.OK)
 	@ResponseBody
 	public Object handlerException(HttpServletRequest request, Exception e) {
@@ -29,8 +29,7 @@ public class MyExceptionHandler {
 		}else {
 			responseData.put("errorCode", EmError.UNKNOWN_ERROR.getErrorCode());
 			responseData.put("errorMessage", EmError.UNKNOWN_ERROR.getErrorMessage());
-			Logger.logMsg(Logger.ERROR,e.getMessage());
-			System. err. println(e.getMessage());
+			System.err.println(e.getMessage());
 		}
 		commonReturnType.setData(responseData);
 		return commonReturnType;

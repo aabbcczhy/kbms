@@ -1,7 +1,6 @@
 package com.fjnu.kbms.controller;
 
 import com.fjnu.kbms.bean.Ap;
-import com.fjnu.kbms.bean.Column;
 import com.fjnu.kbms.error.BusinessException;
 import com.fjnu.kbms.error.EmError;
 import com.fjnu.kbms.response.Response;
@@ -48,12 +47,15 @@ public class ApController {
     @RequestMapping("/getProblems")
     @ResponseBody
     public TableVO getProblems(Integer page, Integer limit, Integer apid, Integer typeId, String publishTime,
-                               Byte status,Byte isArticle){
-        List<Ap> Ap_list = apService.getProblemList(page,limit,apid,typeId,publishTime,status,isArticle);
+                               Byte status){
+        if(status!=null && status == 4){
+            status = null;
+        }
+        List<Ap> Ap_list = apService.getProblemList(page,limit,apid,typeId,publishTime,status);
         List<ProblemListVO> problemListVOList = new ArrayList<>();
         for (Ap ap : Ap_list) {
             ProblemListVO problemListVO = new ProblemListVO();
-            BeanUtils.copyProperties(problemListVO,ap);
+            BeanUtils.copyProperties(ap,problemListVO);
             problemListVO.setTypeName(typeService.selectByPrimaryKey(ap.getTypeId()).getTypeTitle());
             problemListVO.setAuthorName(userService.selectByPrimaryKey(ap.getAuthorId()).getUserName());
             problemListVO.setAnswer((commentService.selectByForeignKey(ap.getApid())).size());
@@ -72,8 +74,12 @@ public class ApController {
     }
 
     @RequestMapping("/toAudit")
-    public ModelAndView toUpdate(){
+    public ModelAndView toUpdate(Integer apid){
         ModelAndView modelAndView = new ModelAndView();
+        if(apid != null){
+            Ap ap = apService.getArticleById(apid);
+            modelAndView.addObject("ap",ap);
+        }
         modelAndView.setViewName("problem_audit");
         return modelAndView;
     }
@@ -105,17 +111,19 @@ public class ApController {
     @RequestMapping("/getArticles")
     @ResponseBody
     public TableVO getArticles(Integer page, Integer limit, Integer apid, String title,Integer typeId, Integer columnId,
-                               String publishTime, Byte status,Byte isArticle){
-        List<Ap> Ap_list = apService.getArticlesList(page,limit,apid,title,typeId,columnId,publishTime,status,isArticle);
+                               String publishTime, Byte status){
+        if(status!=null && status == 4){
+            status = null;
+        }
+        List<Ap> Ap_list = apService.getArticlesList(page,limit,apid,title,typeId,columnId,publishTime,status);
         List<ArticleListVO> articleListVOSList = new ArrayList<>();
         for (Ap ap : Ap_list) {
             ArticleListVO articleListVO = new ArticleListVO();
-            BeanUtils.copyProperties(articleListVO,ap);
+            BeanUtils.copyProperties(ap,articleListVO);
             articleListVO.setTypeName(typeService.selectByPrimaryKey(ap.getTypeId()).getTypeTitle());
-            articleListVO.setTypeName(columnService.selectByPrimaryKey(ap.getColumnId()).getColumnName());
+            articleListVO.setColumnName(columnService.selectByPrimaryKey(ap.getColumnId()).getColumnName());
             articleListVO.setAuthorName(userService.selectByPrimaryKey(ap.getAuthorId()).getUserName());
             articleListVO.setAnswer((commentService.selectByForeignKey(ap.getApid())).size());
-
             articleListVOSList.add(articleListVO);
         }
         return new TableVO(articleListVOSList.size(),articleListVOSList);
@@ -127,17 +135,6 @@ public class ApController {
         modelAndView.setViewName("article_details");
         return modelAndView;
     }
-
-    /**
-     * @Method
-     * @Author QuanJiaXing
-     * @Version  1.0
-     * @Description
-     * @param null
-     * @Return
-     * @Exception
-     * @Date 2020/7/5 12:24
-     */
 
 
 
