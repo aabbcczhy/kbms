@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>问题审核页面</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet"  th:href="@{/css/font.css}">
+    <link rel="stylesheet"  th:href="@{/css/xadmin.css}">
+    <script type="text/javascript" th:src="@{/plugins/jquery/jquery.min.js}" ></script>
+    <script  th:src="@{/layui/layui.js}" charset="utf-8"></script>
+    <script type="text/javascript" th:src="@{/js/xadmin.js}"></script>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+</head>
+<body>
+<div class="x-body layui-anim layui-anim-up">
+    <form class="layui-form" action="problem_audit" id="problem_audit">
+        <div class="layui-form-item">
+            <label class="layui-form-label">ID：</label>
+            <div class="layui-input-inline">
+                <input type="text" hidden name="apid" id="apid" required lay-verify="required"  autocomplete="off" class="layui-input" readonly>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">审核</label>
+            <div class="layui-input-block">
+                <input type="radio" value="0" name="status" title="未审核" id="status">
+                <input type="radio" value="1" name="status" title="通过" >
+                <input type="radio" value="2" name="status" title="未通过" >
+            </div>
+        </div>
+    </form>
+</div>
+<script src="../layui/layui.js"></script>
+<script>
+    layui.use(['form','layer'], function() {
+        $ = layui.jquery;
+        var form = layui.form
+            , layer = layui.layer;
+    });
+</script>
+</body>
+</html>

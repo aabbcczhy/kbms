@@ -1,7 +1,9 @@
 package com.fjnu.kbms.service;
 
 import com.fjnu.kbms.bean.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface UserService {
 
     User getUserById(Integer userId);
@@ -14,4 +16,5 @@ public interface UserService {
 
     void updateUserInfo(User user);
 
+    User selectByPrimaryKey(Integer userId);
 }

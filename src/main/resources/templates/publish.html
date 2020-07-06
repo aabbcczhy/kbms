@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>问题-文章发布</title>
+    <link rel="stylesheet" href="/layui/css/layui.css" />
+    <link rel="stylesheet" href="/css/detail.css" />
+</head>
+
+<body>
+    <header>
+        <ul class="layui-nav layui-bg-blue" style="text-align: center;">
+            <div class="layui-input-inline">
+                <input id="search_block" type="text" name="title" placeholder="搜索问题、话题或人..." autocomplete="off" class="layui-input">
+            </div>
+            <li class="layui-nav-item">
+                <a href=""><i class="layui-icon layui-icon-search" style="font-size: 20px"></i> 发现</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href=""><i class="layui-icon layui-icon-templeate-1" style="font-size: 20px"></i> 专栏</a>
+            </li>
+        </ul>
+        <!-- <ul class="layui-nav layui-bg-blue layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="">退出</a></li>
+        </ul> -->
+        <ul class="layui-nav layui-bg-blue layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">登录</a>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">注册</a>
+            </li>
+        </ul>
+    </header>
+    <div class="layui-container">
+        <div class="layui-row" style="border: 1px solid #e6e6e6;">
+            <div class="layui-col-xs13 layui-col-md9">
+                <div class="layui-card" style="border-right: 1px solid #e6e6e6;">
+                    <div class="layui-card-header">
+                        <h2>发起</h2>
+                    </div>
+                    <div class="layui-card-body content">
+                        <form class="layui-form" action="">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label"><span style="color: red;">*</span>类型</label>
+                                <div class="layui-input-inline" style="width: 50%;">
+                                    <select name="isArticle" lay-verify="required">
+                                    <option value=""></option>
+                                    <option value="0">问题</option>
+                                    <option value="1">文章</option>
+                                  </select>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label"><span style="color: red;">*</span>标题</label>
+                                <div class="layui-input-inline" style="width: 40%;">
+                                    <input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-input-inline" style="width: 20%;">
+                                    <select name="typeId" lay-verify="required">
+                                        <option value=""></option>
+                                        <option value="1">营销技巧</option>
+                                        <option value="2">程序测试</option>
+                                      </select>
+                                </div>
+                                <div class="layui-input-inline" style="width: 20%;">
+                                    <select name="columnId" lay-verify="required">
+                                        <option value=""></option>
+                                        <option value="1">java</option>
+                                        <option value="6">python</option>
+                                        <option value="7">php</option>
+                                      </select>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">封面</label>
+                                <div class="layui-input-block" id="face_block">
+                                    <img src="" alt="封面" width="50%" />
+                                    <input id="face_name" type="hidden" name="picture" />
+                                    <button type="button" class="layui-btn" id="upload">
+                                        <i class="layui-icon">&#xe67c;</i>上传图片
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label"><span style="color: red;">*</span>内容</label>
+                                <div class="layui-input-block">
+                                    <textarea id="content" name="content" cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-block">
+                                    <button class="layui-btn pull-right" lay-submit lay-filter="publish">发布</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-xs5 layui-col-md3">
+                <div class="mod-head">
+                    <h3>问题或文章发起指南</h3>
+                </div>
+                <div class="mod-body" style="color: #999;">
+                    <p style="padding: 10px 20px;"><b>• 文章标题:</b> 请用准确的语言描述您发布的文章思想</p>
+                    <p style="padding: 10px 20px;"><b>• 文章补充:</b> 详细补充您的文章内容, 并提供一些相关的素材以供参与者更多的了解您所要文章的主题思想</p>
+                    <p style="padding: 10px 20px;"><b>• 选择话题:</b> 选择一个或者多个合适的话题, 让您发布的文章得到更多有相同兴趣的人参与. 所有人可以在您发布文章之后添加和编辑该文章所属的话题</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-footer">
+        <p>© 2020 <a href="/">layui.com</a> MIT license</p>
+    </div>
+    <script src="/layui/layui.js"></script>
+    <script>
+        layui.extend({
+            tinymce: 'layui/mods/tinymce/tinymce'
+        }).use(['jquery', 'tinymce', 'element', 'form', 'upload'], function() {
+            var $ = layui.jquery;
+            var element = layui.element;
+            var form = layui.form;
+            var upload = layui.upload;
+            var tinymce = layui.tinymce;
+            upload.render({
+                elem: '#upload', //绑定元素
+                url: '/upload', //上传接口
+                done: function(res) {
+                    //上传完毕回调
+                    $("#face_block img").attr("src", "/image/" + res.data);
+                    $("#face_name").val(res.data);
+                }
+            });
+            tinymce.init({
+                selector: "#content",
+                height: 300,
+                width: '100%',
+                images_upload_handler: function(blobInfo, success, failure) {
+                    var xhr, formData;
+                    xhr = new XMLHttpRequest();
+                    xhr.withCredentials = false;
+                    xhr.open('POST', '/upload');
+
+                    xhr.onload = function() {
+                        var json;
+                        if (xhr.status != 200) {
+                            failure('HTTP Error: ' + xhr.status);
+                            return;
+                        }
+                        json = JSON.parse(xhr.responseText);
+                        if (!json || typeof json.data != 'string') {
+                            failure('Invalid JSON: ' + xhr.responseText);
+                            return;
+                        }
+                        success("/image/" + json.data);
+                    };
+                    formData = new FormData();
+                    formData.append('file', blobInfo.blob());
+                    xhr.send(formData);
+
+                }
+            });
+            form.on('submit(publish)', function(data) {
+                data.field['content'] = tinymce.get('#content').getContent();
+                $.ajax({
+                    type: "POST",
+                    url: "/content/addArticle",
+                    data: data.field,
+                    success: function(res) {
+                        if (res.status === "success") {
+                            alert("发布成功！");
+                            //跳转记得写
+                        }
+                    }
+                })
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>

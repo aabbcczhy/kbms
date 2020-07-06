@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://zhishiku.little-star.me/?/column/ -->
+<html class="en" xmlns:th="http://www.thymeleaf.org">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta name="renderer" content="webkit">
+    <title>专栏</title>
+    <meta name="keywords" content="嵌入式培训,Android培训,JavaEE培训,HTML5培训,UI培训,物联网培训">
+    <meta name="description" content="东方锐智是福建省IT培训领军品牌，13年沉淀，打造IT教育全产业链人才服务平台。全省仅有的全部由一线大咖研发工程师授课的机构，专注于JavaEE培训，嵌入式培训，Android培训，HTML5培训，UI培训，物联网培训，学员口碑业内一马当先。">
+    <!--<base href="http://zhishiku.little-star.me/?/">--><base href="."><!--[if IE]></base><![endif]-->
+    <link href="http://zhishiku.little-star.me/static/css/default/img/favicon.ico?v=20200220" rel="shortcut icon" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" th:href="@{/protal/index_files/bootstrap.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/protal/index_files/icon.css}">
+    <link th:href="@{/protal/index_files/common.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/protal/index_files/link.css}" rel="stylesheet" type="text/css">
+    <link th:href="@{/protal/index_files/style.css}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" th:href="@{/protal/index_files/tomorrow.css}">
+    <script type="text/javascript">
+        var _5F7F32AEC49237EFAE16685163498D45="c7f0a7625d79c89b9ed5b94b30acdd44";
+        var G_POST_HASH=_5F7F32AEC49237EFAE16685163498D45;
+        var G_INDEX_SCRIPT = "?/";
+        var G_SITE_NAME = "东方锐智知识库";
+        var G_BASE_URL = "http://zhishiku.little-star.me/?";
+        var G_STATIC_URL = "http://zhishiku.little-star.me/static";
+        var G_UPLOAD_URL = "http://zhishiku.little-star.me/uploads";
+        var G_USER_ID = "1";
+        var G_USER_NAME = "tong";
+        var G_UPLOAD_ENABLE = "Y";
+        var G_UNREAD_NOTIFICATION = 0;
+        var G_NOTIFICATION_INTERVAL = 100000;
+        var G_CAN_CREATE_TOPIC = "1";
+        var G_ADVANCED_EDITOR_ENABLE = "Y";
+        var FILE_TYPES = "jpg,jpeg,png,gif,zip,doc,docx,rar,pdf,psd,mp4";
+        var G_DRAFT_ENABLED = "N";
+        var G_PER_PAGE = "10";
+        var G_INDEX_PER_PAGE = "20";
+        var G_PRIVATEKEY = "pvjxzjmzvewfscft";
+        var G_IV = "qvibvaiwgouxwjeu";
+        var G_QUICK_PUBLISH_HUMAN_VALID = "0";
+    </script>
+    <script th:src="@{/protal/index_files/jquery.2.js}" type="text/javascript"></script>
+    <script th:src="@{/protal/index_files/jquery.form.js}" type="text/javascript"></script>
+    <script th:src="@{/protal/index_files/plug-in_module.js}" type="text/javascript"></script>
+    <script th:src="@{/protal/index_files/aws.js}" type="text/javascript"></script>
+    <script th:src="@{/protal/index_files/aw_template.js}" type="text/javascript"></script>
+    <script th:src="@{/protal/index_files/app.js}" type="text/javascript"></script>
+    <script type="text/javascript" th:src="@{/protal/index_files/compatibility.js}"></script>
+    <script type="text/javascript" th:src="@{/protal/index_files/gt2.js}"></script>
+    <script th:src="@{/protal/index_files/crypto-js.js}"></script>
+    <script th:src="@{/protal/index_files/highlight.pack.js}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre').forEach((block) => {
+                hljs.highlightBlock(block);
+            });
+        });
+    </script>
+    <style type="text/css">
+        .geetest_radar_tip_content{
+            position: initial !important;
+        }
+    </style>
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="http://zhishiku.little-star.me/static/js/respond.js"></script>
+    <![endif]-->
+    <style type="text/css">.fancybox-margin{margin-right:17px;}</style></head>
+<body><noscript unselectable="on" id="noscript">
+    <div class="aw-404 aw-404-wrap container">
+        <img src="http://zhishiku.little-star.me/static/common/no-js.jpg">
+        <p>你的浏览器禁用了JavaScript, 请开启后刷新浏览器获得更好的体验!</p>
+    </div>
+</noscript>
+<div class="aw-top-menu-wrap">
+    <div class="container">
+        <!-- logo -->
+        <div class="aw-logo hidden-xs">
+            <a href="http://zhishiku.little-star.me/"></a>
+        </div>
+        <!-- end logo -->
+        <!-- 搜索框 -->
+        <div class="aw-search-box  hidden-xs hidden-sm">
+            <form class="navbar-search" action="http://zhishiku.little-star.me/?/search/" id="global_search_form" method="post">
+                <label class="oldPwdTip aw-search-query-label" onclick="$(this).hide();$(&#39;#aw-search-query&#39;).focus();">搜索问题、话题或人...</label> 				<input class="form-control search-query" type="text" value="" autocomplete="off" name="q" id="aw-search-query" onfocus="hideOldPwdTip(&#39;aw-search-query&#39;);" onblur="toggleOldPwdTip(&#39;aw-search-query&#39;,this.value);">
+                <span title="搜索" id="global_search_btns" onclick="$(&#39;#global_search_form&#39;).submit();"><i class="icon icon-search"></i></span>
+                <div class="aw-dropdown">
+                    <div class="mod-body">
+                        <p class="title">输入关键字进行搜索</p>
+                        <ul class="aw-dropdown-list collapse"></ul>
+                        <p class="search"><span>搜索:</span><a onclick="$(&#39;#global_search_form&#39;).submit();"></a></p>
+                    </div>
+                    <div class="mod-footer">
+                        <a href="javascript:;" onclick="$(&#39;#header_publish&#39;).click();" class="pull-right btn btn-mini btn-success publish">发起问题</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- end 搜索框 -->
+        <!-- 导航 -->
+        <div class="aw-top-nav navbar">
+            <div class="navbar-header">
+                <button class="navbar-toggle pull-left">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="http://zhishiku.little-star.me/?/explore/"><i class="icon icon-list"></i> 发现</a>
+                    </li>
+                    <li>
+                        <a href="http://zhishiku.little-star.me/?/column/" class="active"><i class="icon icon-column"></i> 专栏</a>
+                    </li>
+
+                    <li>
+                        <a style="font-weight:bold;">· · ·</a>
+                        <div class="dropdown-list pull-right">
+                            <ul id="extensions-nav-list">
+
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- end 导航 -->
+        <!-- 用户栏 -->
+        <div class="aw-user-nav">
+            <!-- 登陆&注册栏 -->
+            <div class="aw-user-nav">
+                <!-- 登陆&注册栏 -->
+                <a class="login btn btn-normal btn-primary" href="http://zhishiku.little-star.me/?/account/login/">登录</a>
+                <a class="register btn btn-normal btn-success" href="http://zhishiku.little-star.me/?/account/register/">注册</a>						<!-- end 登陆&注册栏 -->
+            </div>
+            <!-- end 登陆&注册栏 -->
+        </div>
+        <!-- end 用户栏 -->
+        <!-- 发起 -->
+        <!-- end 发起 -->
+    </div>
+</div>
+
+<script>
+    $(function () {
+        var $changeSkin = $("#changeSkin"), $skinList = $("#skinList");
+        $changeSkin.mouseenter(function () {
+            $skinList.stop(true,true).show();
+        });
+        $changeSkin.mouseleave(function (e) {
+            $skinList.hide();
+        });
+        $skinList.mouseover(function () {
+            $(this).stop(true,true).show();
+        });
+        $skinList.mouseleave(function (e) {
+            $(this).hide();
+        })
+    })
+</script>
+<div class="aw-container-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="aw-content-wrap clearfix simpobox">
+
+                <div class="N-left clearfix">
+                    <div class="N-mytitle">
+                        <h2><img th:src="@{/column/np.png}">专栏</h2>
+                    </div>
+
+                    <div class="N-zllist clearfix">
+
+                        <div class="aw-common-list" id="column">
+                            <dl th:each="t:${columns}">
+                                <dd>
+                                    <h2><a href="http://localhost:8080/column_list" th:text="${t.columnName}"></a></h2>
+                                    <p th:text="${t.columnDesc}"></p>
+                                    <span>
+                                    浏览量<em th:text="${t.scan}"></em>
+                                </span>
+                                </dd>
+                            </dl>
+                        </div>
+
+
+                        <div class="N-mytitles">
+                            <h2><img th:src="@{/column/np.png}">文章</h2>
+                        </div>
+                        <div class="aw-mod aw-explore-list">
+                            <div class="mod-body">
+                                <div class="aw-common-list">
+                                    <div th:each="t:${articles}" class="aw-item article" data-topic-id="">
+                                        <h4>
+                                            <a href="http://zhishiku.little-star.me/?/article/3" th:text="${t.title}"> </a>
+                                        </h4>
+                                        <p>
+                                            <a class="aw-question-tags" href="http://zhishiku.little-star.me/?/explore/category-8">IT技能</a>
+                                            <a class="aw-user-name" th:text="${t.authorId}"></a>发表了文章
+                                            <a th:text="${t.scan}"></a>次浏览
+                                            <a th:text="${t.publishTime}"></a>
+                                            <span class="text-color-999" ></span>
+                                            <span class="text-color-999 related-topic collapse"> • 来自相关话题</span>
+                                        </p>
+                                        <!-- 文章内容调用 -->
+                                        <div class="markitup-box" onclick="window.location.href=&#39;article/3&#39;" style="cursor: pointer;" th:utext="${t.content}">
+                                        </div>
+                                        <!-- end 文章内容调用 -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var sort = 'sum';
+    var re=eval("/dl/g");
+
+    $(".N-mytitle").find("a").mouseenter(function(){
+        $('#bp_all_more').show();
+        $('#bp_all_more').attr('data-page',1);
+        $(".N-mytitle").find("li").removeClass("cur");
+        $(this).parent().addClass("cur");
+        var url=$(this).attr("href");
+        sort = $(this).attr('data-sort');
+        $.get(url,function(result){
+            $('.N-myzilistbox').html(result);
+        });
+    });
+    $('#bp_all_more').click(function ()
+    {
+        var curPage = parseInt($(this).attr('data-page')) + 1;
+
+        var cloneN = $(".N-myzilistbox").clone();
+
+
+        $('.N-myzilistbox').html('<p style="padding: 15px 0" align="center"><img src="' + G_STATIC_URL + '/css/default/img/loading_b.gif" alt="" /></p>');
+
+        $.get(G_BASE_URL + '/column/ajax/list/sort' + '-' + sort + '__page' + '-' + curPage, function (response)
+        {
+
+            if ($.trim(response) != '')
+            {
+                var lengt = response.match(re).length;
+
+                if(lengt < 12){
+                    $("#bp_all_more").attr('data-page',0);
+                }else{
+                    $("#bp_all_more").attr('data-page',curPage);
+                }
+
+                $('.N-myzilistbox').html(response);
+            }
+            else
+            {
+                $("#bp_all_more").attr('data-page',0);
+                $('.N-myzilistbox').html(cloneN);
+
+            }
+        });
+    });
+
+    $('#article_all_more').click(function(){
+
+        var aPage = parseInt($(this).attr('data-page')) + 1;
+
+        var cloneA = $(".nzllist").clone();
+
+        $('.nzllist').html('<p style="padding: 15px 0" align="center"><img src="' + G_STATIC_URL + '/css/default/img/loading_b.gif" alt="" /></p>');
+
+        $.get(G_BASE_URL + '/column/ajax/article_list/page'+'-'+aPage, function (response)
+        {
+            if ($.trim(response) != '')
+            {
+
+                var lengt = response.match(re).length;
+
+                if(lengt < 12){
+
+                    $("#article_all_more").attr('data-page',0);
+
+                }else{
+
+                    $("#article_all_more").attr('data-page',aPage);
+
+                }
+
+                $('.nzllist').html(response);
+            }
+            else
+            {
+                $("#article_all_more").attr('data-page',0);
+                $('.nzllist').html(cloneA);
+
+            }
+
+        });
+    })
+</script>
+
+<div class="aw-footer-wrap">
+    <div class="aw-footer">
+        Copyright © 2020, All Rights Reserved
+
+        <span class="hidden-xs">Powered By </span>
+
+    </div>
+</div>
+
+
+
+</body></html>

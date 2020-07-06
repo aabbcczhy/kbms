@@ -185,4 +185,73 @@
       publish_time = #{publishTime,jdbcType=VARCHAR}
     where apid = #{apid,jdbcType=INTEGER}
   </update>
+
+<!--  <select id="getProblemList" resultMap="BaseResultMap">-->
+
+<!--  	select * from ap limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}-->
+
+<!--  </select>-->
+
+  <select id="getProblemList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ap
+    where
+    1 = 1
+    <if test="apid != null">
+      and apid like "%"#{apid,jdbcType=INTEGER}"%"
+    </if>
+    <if test="typeId != null">
+      and type_id like  "%"#{typeId,jdbcType=INTEGER}"%"
+    </if>
+    <if test="publishTime != null">
+      and publish_time = #{publishTime,jdbcType=VARCHAR}
+    </if>
+    <if test="status != null or status != 4">
+      and status = #{status,jdbcType=TINYINT}
+    </if>
+    <if test="isArticle != null">
+      and is_article = #{isArticle,jdbcType=TINYINT}
+    </if>
+    limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+
+  <select id="getArticleList" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ap
+    where
+    1 = 1
+    <if test="apid != null">
+      and apid like "%"#{apid,jdbcType=INTEGER}"%"
+    </if>
+    <if test="title != null">
+      and title like  "%"#{title,jdbcType=VARCHAR}"%"
+    </if>
+    <if test="typeId != null">
+      and type_id like  "%"#{typeId,jdbcType=INTEGER}"%"
+    </if>
+    <if test="columnId != null">
+      and column_id like  "%"#{columnId,jdbcType=INTEGER}"%"
+    </if>
+    <if test="publishTime != null">
+      and publish_time = #{publishTime,jdbcType=VARCHAR}
+    </if>
+    <if test="status != null or status != 4">
+      and status = #{status,jdbcType=TINYINT}
+    </if>
+    <if test="isArticle != null">
+      and is_article = #{isArticle,jdbcType=TINYINT}
+    </if>
+    limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="getArticleAndProblemListAll" resultMap="BaseResultMap">
+    select *
+    from ap limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
+  <select id="getArticleAndProblemListByType" resultMap="BaseResultMap">
+    select *
+    from ap where type_id=#{typeId,jdbcType=INTEGER}
+    limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+  </select>
 </mapper>

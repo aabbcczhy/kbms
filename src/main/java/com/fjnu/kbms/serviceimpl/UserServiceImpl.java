@@ -4,7 +4,6 @@ import com.fjnu.kbms.bean.User;
 import com.fjnu.kbms.dao.UserMapper;
 import com.fjnu.kbms.service.UserService;
 import com.fjnu.kbms.util.Md5;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -44,5 +43,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUserInfo(User user) {
         userMapper.updateByUsernameSelective(user);
+    }
+
+    @Override
+    public User selectByPrimaryKey(Integer userId) {
+        return userMapper.selectByPrimaryKey(userId);
     }
 }

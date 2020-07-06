@@ -1,9 +1,10 @@
 package com.fjnu.kbms.dao;
 
 import com.fjnu.kbms.bean.Type;
-import com.fjnu.kbms.vo.ColumnListVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 import java.util.Vector;
 
@@ -17,6 +18,8 @@ public interface TypeMapper {
     int insertSelective(Type record);
 
     Type selectByPrimaryKey(Integer typeId);
+
+    List<Type> selectByTypeId();
 
     int updateByPrimaryKeySelective(Type record);
 

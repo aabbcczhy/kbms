@@ -86,4 +86,10 @@
       status = #{status,jdbcType=TINYINT}
     where type_id = #{typeId,jdbcType=INTEGER}
   </update>
+  <select id="selectByTypeId" resultMap="BaseResultMap">
+
+  	select * from type where status = 1
+
+  </select>
+
 </mapper>

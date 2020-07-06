@@ -23,6 +23,13 @@
     from comment
     where comment_id = #{commentId,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByForeignKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from comment
+    where comment_ap = #{commentAp,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from comment
     where comment_id = #{commentId,jdbcType=INTEGER}

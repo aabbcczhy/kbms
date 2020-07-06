@@ -160,4 +160,9 @@
        column_desc = #{columnDesc,jdbcType=VARCHAR}
     where column_id = #{columnId,jdbcType=INTEGER}
   </update>
+  <select id="selectByColumnId" resultMap="BaseResultMap">
+
+  	select * from `column` where status=1
+
+  </select>
 </mapper>
