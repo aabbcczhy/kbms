@@ -8,7 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
     @org.springframework.beans.factory.annotation.Autowired
     com.fjnu.kbms.service.ApService apService;
-
+    @org.springframework.beans.factory.annotation.Autowired
+    com.fjnu.kbms.service.ColumnService columnService;
     @RequestMapping("/index")
     public ModelAndView toIndex(){
         ModelAndView modelAndView = new ModelAndView();
@@ -31,7 +32,16 @@ public class IndexController {
         modelAndView.addObject("articles",articles);
         modelAndView.setViewName("front_index.html");
         return modelAndView;
-    }    
+    }
+    @RequestMapping("/column")
+    public ModelAndView columnIndex(){
+        ModelAndView modelAndView = new ModelAndView();
+        java.util.List<com.fjnu.kbms.bean.Column> columns = columnService.getAllColumns();
+        modelAndView.addObject("columns",columns);
+        modelAndView.setViewName("column.html");
+        return modelAndView;
+    }
+
     /**
      * @Method 添加文章
      * @Author QuanJiaXing
