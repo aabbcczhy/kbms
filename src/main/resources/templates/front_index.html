@@ -158,20 +158,20 @@
                     <div class="aw-mod aw-explore-list">
                         <div class="mod-body">
                             <div class="aw-common-list">
-                                <div th:each="t:${articles}" class="aw-item article" data-topic-id="">
+                                <div th:each="article:${articles}" class="aw-item article" data-topic-id="">
                                     <h4>
-                                        <a th:href="'/detail/' + ${t.apid}" th:text="${t.title}"> </a>
+                                        <a th:href="'/detail/' + ${article.apid}" th:text="${article.title}"> </a>
                                     </h4>
                                     <p>
                                         <a class="aw-question-tags" href="http://zhishiku.little-star.me/?/explore/category-8">IT技能</a>
-                                        <a class="aw-user-name" th:text="${t.authorId}"></a>发表了文章
-                                        <a th:text="${t.scan}"></a>次浏览
-                                        <a th:text="${t.publishTime}"></a>
+                                        <a class="aw-user-name" th:text="${article.authorName}"></a>发表了文章
+                                        <a th:text="${article.scan}"></a>次浏览
+                                        <a th:text="${article.publishTime}"></a>
                                         <span class="text-color-999" ></span>
                                         <span class="text-color-999 related-topic collapse"> • 来自相关话题</span>
                                     </p>
                                     <!-- 文章内容调用 -->
-                                    <div class="markitup-box" onclick="window.location.href=&#39;article/3&#39;" style="cursor: pointer;" th:utext="${t.content}">
+                                    <div class="markitup-box" onclick="window.location.href=&#39;article/3&#39;" style="cursor: pointer;" th:utext="${article.content}">
                                     </div>
                                         <!-- end 文章内容调用 -->
                                 </div>

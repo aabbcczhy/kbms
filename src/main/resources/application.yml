@@ -17,7 +17,7 @@ spring:
       max-request-size: 50MB
       resolve-lazily: false
       enabled: true
-      location: D:/zskglxt/upload
+      location: D:\zskglxt\upload
 
   thymeleaf:
     cache: false

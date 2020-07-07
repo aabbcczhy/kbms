@@ -54,9 +54,17 @@ public class IndexController {
     @RequestMapping("/front_index")
     public ModelAndView toFrontIndex(){
         ModelAndView modelAndView = new ModelAndView();
+        List<ApDetailVO> detailVOS = new ArrayList<>();
         java.util.List<com.fjnu.kbms.bean.Ap> articles=apService.getArticleAndProblemListAll(1,10);
+        for (Ap article : articles) {
+            ApDetailVO apDetailVO = new ApDetailVO();
+            BeanUtils.copyProperties(article,apDetailVO);
+            User user = userService.getUserById(article.getAuthorId());
+            apDetailVO.setAuthorName(user.getUserName());
+            detailVOS.add(apDetailVO);
+        }
         java.util.List<com.fjnu.kbms.bean.Type> types = typeService.getAllTypes();
-        modelAndView.addObject("articles",articles);
+        modelAndView.addObject("articles",detailVOS);
         modelAndView.addObject("type",types);
         modelAndView.setViewName("front_index");
         return modelAndView;
@@ -65,9 +73,17 @@ public class IndexController {
     public ModelAndView columnIndex(){
         ModelAndView modelAndView = new ModelAndView();
         java.util.List<com.fjnu.kbms.bean.Column> columns = columnService.getAllColumns();
+        List<ApDetailVO> detailVOS = new ArrayList<>();
         java.util.List<com.fjnu.kbms.bean.Ap> articles=apService.getArticleAndProblemListAll(1,10);
+        for (Ap article : articles) {
+            ApDetailVO apDetailVO = new ApDetailVO();
+            BeanUtils.copyProperties(article,apDetailVO);
+            User user = userService.getUserById(article.getAuthorId());
+            apDetailVO.setAuthorName(user.getUserName());
+            detailVOS.add(apDetailVO);
+        }
         modelAndView.addObject("columns",columns);
-        modelAndView.addObject("articles",articles);
+        modelAndView.addObject("articles",detailVOS);
         modelAndView.setViewName("column");
         return modelAndView;
     }
@@ -75,8 +91,16 @@ public class IndexController {
     @RequestMapping("/column_list/{columnId}")
     public ModelAndView getColumnList(@PathVariable Integer columnId){
         ModelAndView modelAndView = new ModelAndView();
+        List<ApDetailVO> detailVOS = new ArrayList<>();
         java.util.List<com.fjnu.kbms.bean.Ap> articles=apService.getArticleAndProblemListByColumn(1,10,columnId);
-        modelAndView.addObject("articles",articles);
+        for (Ap article : articles) {
+            ApDetailVO apDetailVO = new ApDetailVO();
+            BeanUtils.copyProperties(article,apDetailVO);
+            User user = userService.getUserById(article.getAuthorId());
+            apDetailVO.setAuthorName(user.getUserName());
+            detailVOS.add(apDetailVO);
+        }
+        modelAndView.addObject("articles",detailVOS);
         modelAndView.setViewName("column_list");
         return modelAndView;
     }

@@ -247,11 +247,11 @@
   </select>
   <select id="getArticleAndProblemListAll" resultMap="BaseResultMap">
     select *
-    from ap
+    from ap where status = 1
   </select>
   <select id="getArticleAndProblemListByColumn" resultMap="BaseResultMap">
     select *
-    from ap where column_id=#{columnId,jdbcType=INTEGER}
+    from ap where status = 1 and column_id=#{columnId,jdbcType=INTEGER}
     limit #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
   </select>
 
